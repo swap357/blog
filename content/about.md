@@ -8,7 +8,7 @@ author = "Swapnil Patel"
 
 # About
 
-I'm a software engineer at Intel who works on Data Center projects, including benchmarking and performance optimization of open-source projects. Alongside software and code benchmarks and tools, I'm also involved in hardware/software co-optimization, characterization studies to draft analytical models.
+Software Engineer at Intel focused on Data Center projects. My work involves improving open-source project performance, collaborating on hardware/software optimization, and developing models to increase system efficiency.
 
 Leisure times are spent exploring Palo Alto, Mountain View, and the South Bay, engaging in street photography, and playing pickleball in local parks.
 
