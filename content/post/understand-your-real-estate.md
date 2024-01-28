@@ -60,6 +60,8 @@ NUMA:
 <redacted>
 ``` 
 
+#### Observation:
+
 The Virtualization: VT-x line indicates that your CPU supports Intel VT-x, a hardware feature that enhances performance and security of the virtual machines.
 
 Hypervisor vendor: KVM confirms that KVM is the hypervisor being used, providing the layer that allows multiple operating systems to share a single hardware host.
@@ -80,4 +82,10 @@ This command generates a PNG image, giving a visual layout of our system's archi
 
 ![systemTopology](https://autoscaler.sh/images/system_topology.png)
 
-But why should we care? Well, understanding our VM's environment helps us know what we paid for. No more blindly assigning tasks or resources. We see what's available, plan accordingly, and execute efficiently, optimize for what we have. that simple.
+#### Observation:
+Package L#0 and Package L#1, contains a single core (Core L#0 and Core L#1) with one processing unit (PU) each, implying this is a system with two physical CPU cores in total. This aligns with the common configuration of lightweight virtualized environments or entry-level servers, where resources are often minimized to fit specific use cases or workloads that do not require high parallel processing capabilities.
+
+The presence of NUMA (Non-Uniform Memory Access) nodes indicates that the system can optimize memory access patterns based on the proximity of memory to the cores, reducing latency and increasing performance for memory-intensive tasks. The NUMA node L#0 P#0 is associated with a block of memory, likely representing the total accessible RAM for that node.
+
+#### Conclusion
+But why should we care about all of this? Well, understanding our VM's environment helps us know what we paid for. No more blindly assigning tasks or resources. We see what's available, plan accordingly, and execute efficiently, optimize for what we have. that simple.
