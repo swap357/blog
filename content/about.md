@@ -6,13 +6,13 @@ aliases = ["about-us","about-hugo","contact"]
 author = "Swapnil Patel"
 +++
 
-# About
+### About
 
-Software Engineer at Intel focused on Data Center projects. My work involves improving open-source project performance, collaborating on hardware/software optimization, and developing models to increase system efficiency.
+Software Engineer at Intel focused on Data Center projects. My work involves improving open-source project performance, [defining benchmarks](https://www.spec.org/blog/2023/03/cloudbenchmarks.html), collaborating on hardware/software optimization, and developing models to increase system efficiency.
 
 Leisure times are spent exploring Palo Alto, Mountain View, and the South Bay, engaging in street photography, and playing pickleball in local parks.
 
-# Contact
+### Contact
 
 To connect, reach out via -
 - email: swapnilpatel357@gmail.com
