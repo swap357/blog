@@ -1,3 +1,4 @@
 baseURL = 'http://autoscaler.sh/'
 languageCode = 'en-us'
 title = 'AutoScaler'
+theme = "devise"
