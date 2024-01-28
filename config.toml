@@ -7,7 +7,7 @@ relativeURLs = true
 enableEmoji = true
 googleAnalytics = ""
 enableRobotsTXT = true
-copyright = "&copy; 2024, Swapnil Patel"
+copyright = "The views and content expressed on this site are strictly my own and not affiliated with any other party. <br> &copy; 2024, Swapnil Patel"
 
 # Main menu items
 [menu]
