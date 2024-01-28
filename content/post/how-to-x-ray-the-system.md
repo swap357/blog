@@ -46,4 +46,8 @@ $ docker run --rm -it -d -v /tmp/profiles:/profiles:ro -p 5000:5000 swap357/flam
 
 The web dashboard should be up and running on <serverIP>:5000. 
 
+!(flamescope-fig1)[https://autoscaler.sh/images/flamegraph-a.png]
+!(flamescope-fig2)[https://autoscaler.sh/images/flamegraph-b.png]
+!(flamescope-fig3)[https://autoscaler.sh/images/flamegraph-c.png]
+
 Enjoy and until next time!
