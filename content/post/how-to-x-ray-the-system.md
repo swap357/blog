@@ -29,6 +29,9 @@ $ sudo perf record -F 49 -a -g -- sleep 60
 - The '-a' flag collects data across all processes, and 
 - '-g' collects call-graph information
 
+More analysis commands here - 
+https://github.com/swap357/perf-analyzer/blob/main/analysis.ipynb
+
 Once you've collected your data you'll have perf.data, it's time to generate a readable profile for us to parse. Run the following command:
 
 ```
