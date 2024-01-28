@@ -11,8 +11,9 @@ categories = [
 ]
 +++
 
-Recently, I've been trying to understand how VMs on public cloud are prepared for customers. (AWS/GCP/Azure)
+Recently, I've been trying to understand how VMs on public cloud are prepared for customers. As a frugal user who's squeezed the most out of free cloud tiers, moving to a paid model is a big leap. I'd like to know what exactly I'm paying for.
 
+With a VM instance, you get an apartment but with neighbors, and a lot of them. Some quiet, most noisy, you just hope the walls aren't thin.
 
 Imagine sharing an hourly rental desktop with 100 others and all 100 of them working on it at the same time - it's kind of the same thing. When an VM (ec2 instance) is launched, it's a slice of one giant physical system (AKA bare-metal), just - neatly separated from others. 
 
@@ -26,7 +27,7 @@ Why would one choose such chaos ? because we're too lazy to do it all, and it's 
 
 Now, speaking of neatly separated, it's mostly KVM with hardware-assisted virtualization. KVM turns the Linux kernel into a hypervisor, enabling you to run multiple, isolated virtual machines (VMs) on a single physical server.
 
-This is the first command i run every time i log onto a new system-
+This might be the first command i run every time i log onto a new system -
 
 ```
 ubuntu@b2-7-us-west-or-1:~$ lscpu
@@ -80,7 +81,7 @@ lstopo --of png system_topology.png
 ```
 This command generates a PNG image, giving a visual layout of our system's architecture, including CPUs, memory, caches, and their interconnections.
 
-![systemTopology](https://autoscaler.sh/images/system_topology.png)
+![systemTopology](https://autoscaler.sh/images/system_topology.jpg)
 
 #### Observation:
 Package L#0 and Package L#1, contains a single core (Core L#0 and Core L#1) with one processing unit (PU) each, implying this is a system with two physical CPU cores in total. This aligns with the common configuration of lightweight virtualized environments or entry-level servers, where resources are often minimized to fit specific use cases or workloads that do not require high parallel processing capabilities.
