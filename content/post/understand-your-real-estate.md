@@ -67,7 +67,7 @@ The Virtualization: VT-x line indicates that your CPU supports Intel VT-x, a har
 
 Hypervisor vendor: KVM confirms that KVM is the hypervisor being used, providing the layer that allows multiple operating systems to share a single hardware host.
 
-Okay, let's get practical. This is not enough, we need something more. We need to understand how of all this is connected - a blueprint of the building- system's topology.
+Okay, let's get practical. We need something more - need to understand how of all this is connected - a blueprint of the building- system's topology.
 
 First, update package lists and install `hwloc`:
 ```
