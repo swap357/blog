@@ -4,11 +4,15 @@ title = "understand your real-estate"
 date = "2023-05-06"
 description = ""
 tags = [
-"blog"
+"cpu",
+"cloud",
+"vm"
 ]
 categories = [
-"blog"
+"cloud",
+"learnings"
 ]
+comments = true
 +++
 
 Recently, I've been trying to understand how VMs on public cloud are prepared for customers. As a frugal user who's squeezed the most out of free cloud tiers, moving to a paid model is a big leap. I'd like to know what exactly I'm paying for.

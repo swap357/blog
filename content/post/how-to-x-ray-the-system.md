@@ -4,11 +4,18 @@ title = "how to x-ray system with flamescope"
 date = "2023-10-01"
 description = ""
 tags = [
-"blog"
+"cpu",
+"bare-metal",
+"perf",
+"linux",
+"flamegraphs",
+"flamescope"
 ]
 categories = [
-"blog"
+"learnings",
+"system"
 ]
+comments = true
 +++
 
 It's important to understand how efficiently our system is utilizing its CPU cycles. 

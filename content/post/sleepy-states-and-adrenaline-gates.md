@@ -4,11 +4,17 @@ title = "sleepy states and adrenaline gates"
 date = "2023-05-10"
 description = ""
 tags = [
-"blog"
+"cpu",
+"bare-metal",
+"acpi",
+"power",
+"frequency"
 ]
 categories = [
-"blog"
+"learnings",
+"system"
 ]
+comments = true
 +++
 
 Modern datacenter CPUs implement variations of something called- P states and C states, with the basic idea of adjusting CPU performance and power consumption based on demand.
