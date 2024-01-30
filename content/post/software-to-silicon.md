@@ -6,9 +6,7 @@ description = ""
 tags = [
 "blog"
 ]
-categories = [
-"blog"
-]
+
 +++
 
 Hello!

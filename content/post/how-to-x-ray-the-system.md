@@ -11,10 +11,6 @@ tags = [
 "flamegraphs",
 "flamescope"
 ]
-categories = [
-"learnings",
-"system"
-]
 comments = true
 +++
 

@@ -8,10 +8,7 @@ tags = [
 "cloud",
 "vm"
 ]
-categories = [
-"cloud",
-"learnings"
-]
+
 comments = true
 +++
 

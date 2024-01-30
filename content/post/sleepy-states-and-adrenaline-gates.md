@@ -10,10 +10,7 @@ tags = [
 "power",
 "frequency"
 ]
-categories = [
-"learnings",
-"system"
-]
+
 comments = true
 +++
 
