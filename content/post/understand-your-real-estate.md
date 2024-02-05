@@ -14,9 +14,8 @@ comments = true
 
 Recently, I've been trying to understand how VMs on public cloud are prepared for customers. As a frugal user who's squeezed the most out of free cloud tiers, moving to a paid model is a big leap. I'd like to know what exactly I'm paying for.
 
-With a VM instance, you get an apartment but with neighbors, and a lot of them. Some quiet, most noisy, you just hope the walls aren't thin.
-
-Imagine sharing an hourly rental desktop with 100 others and all 100 of them working on it at the same time - it's kind of the same thing. When an VM (ec2 instance) is launched, it's a slice of one giant physical system (AKA bare-metal), just - neatly separated from others. 
+When an VM (ec2 instance) is launched, it's a slice of one giant physical system (AKA bare-metal), just - "neatly" separated from others. 
+You get an apartment but with neighbors, and a lot of them. Some quiet, most noisy, you just hope the walls aren't thin.
 
 Why would one choose such chaos ? because we're too lazy to do it all, and it's a full-time job for someone else-
 - keep a system up and running 24*7 * 365 days. (CSP SLA: 99.9% avalaiblity)
