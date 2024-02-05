@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "how to x-ray system with flamescope"
+title = "how to x-ray system: Using linux-perf,famegraphs and flamescope"
 date = "2023-10-01"
 description = ""
 tags = [

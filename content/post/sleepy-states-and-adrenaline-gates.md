@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "sleepy states and adrenaline gates"
+title = "sleepy states and adrenaline gates: CPU P and C states"
 date = "2023-05-10"
 description = ""
 tags = [

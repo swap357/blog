@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understand your real-estate"
+title = "understand your real-estate: understanding VMs on public cloud"
 date = "2023-05-06"
 description = ""
 tags = [
