@@ -25,9 +25,9 @@ The tool is designed to bridge the knowledge gap between system experts and high
 4. **Interactive Learning**: Users can interact with different parts of the flamegraph to get more detailed insights about specific calls or processes.
 5. **Democratization of Knowledge**: By simplifying the interpretation of system call stacks, the tool makes it easier for high-level engineers to understand and optimize their systems without needing deep technical experience.
 
-![flamegraph-explainerA](https://autoscaler.sh/images/flamegraphs-explainerA.png)
+![flamegraph-explainerA](https://autoscaler.sh/images/flamegraph-explainerA.png)
 
-![flamegraph-explainerB](https://autoscaler.sh/images/flamegraphs-explainerB.png)
+![flamegraph-explainerB](https://autoscaler.sh/images/flamegraph-explainerB.png)
 
 
 
