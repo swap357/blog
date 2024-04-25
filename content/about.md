@@ -10,7 +10,7 @@ author = "Swapnil Patel"
 
 Software Engineer at Intel focused on Data Center projects. My work involves improving open-source project performance, [defining benchmarks](https://www.spec.org/blog/2023/03/cloudbenchmarks.html), collaborating on hardware/software optimization, and developing models to increase system efficiency.
 
-Leisure times are spent exploring Palo Alto, Mountain View, and the South Bay, engaging in street photography, and playing pickleball in local parks.
+Leisure times are spent exploring Palo Alto, Mountain View, and the South Bay, street photography, and pickleball at local parks.
 
 ### Contact
 
