@@ -20,9 +20,10 @@ Now, imagine NPCs that don't just respond, but learn, adapt, and evolve in real-
 LM Agents based on auto-regressive LLMs can be made to act with more intelligence and creativity. 
 
 Some recent references:
-https://github.com/joonspk-research/generative_agents
-https://arxiv.org/pdf/2401.13178v1.pdf
-https://arxiv.org/pdf/2406.06485
+
+- https://github.com/joonspk-research/generative_agents
+- https://arxiv.org/pdf/2401.13178v1.pdf
+- https://arxiv.org/pdf/2406.06485
 
 
 One of the projects I worked on recently is a text-based game solver agent. 
