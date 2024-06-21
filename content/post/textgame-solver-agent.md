@@ -15,7 +15,7 @@ I've been long-time enthusiast of adventure and strategy games. My distinct memo
 Other examples - Zelda, Witcher
 
 Traditionally confined to scripted behaviors and limited interactions, have long been the bottleneck to immersive gameplay. 
-But, imagine NPCs that don't just respond, but learn, adapt, and evolve in real-time as they interact with the game world and the player.
+Now, imagine NPCs that don't just respond, but learn, adapt, and evolve in real-time as they interact with the game world and the player.
 
 LM Agents based on auto-regressive LLMs can be made to act with more intelligence and creativity. 
 
