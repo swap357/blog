@@ -30,7 +30,7 @@ copyright = "The views and content expressed on this site are strictly my own an
   header_title = "Swapnil Patel"                 # Your header title
   header_subtitle = "Software engineer @ Intel | San Jose,CA" # Your header subtitle
   home_image = "/images/avatar.png"          # Path to header image starting from the static directory (optional)
-  recent_posts = 5                           # Max amount of recent posts to show
+  recent_posts = 50                           # Max amount of recent posts to show
   mainSections = ["posts", "post", "blog"]   # Main sections to include in recent posts
   [params.style]                             # CSS style overrides
     backgroundColor = "#f8f9fa"
