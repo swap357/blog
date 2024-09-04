@@ -11,7 +11,7 @@ tags = [
 comments = true
 +++
 
-I've been working on a simple chatbot app using Streamlit. Frustrated by the lack of a simple, easy-to-use chatbot, that would allow function-calling with local models, I decided to build my own. This project is intended to serve the following purposes:
+I've been working on a simple chatbot app using Streamlit. Sensed a lack of a simple, easy-to-use chatbot, that would allow function-calling with local models, I decided to build my own (learning exercise). This project is intended to serve the following purposes:
 - Utilizes Streamlit to create interactive frontend components, providing a seamless user experience.
 - Functions within the application are defined as Pydantic models, leveraging the 'instructor' framework for enhanced structure and validation. This helps switch between different GPT models with ease- openAI as well as local models with ollama.
 - Experiment with different GPT models and their capabilities to handle choices of tools, function-calling and context-understanding.

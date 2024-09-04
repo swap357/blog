@@ -18,9 +18,11 @@ I intend to write on my learnings, share movie/tv quotes, trip reviews and life 
 
 I've been writing code 3 quarters of my life so far, with the most recent quarter being spent in the US. I started off my journey on the beautiful west coast of India and later ended up on another west coast, just half-way around the world- the sunny California.
 
-As for my professional interests - they're distributed algorithms.There's a certain unpredictable beauty in scalability studies—the way lines and distributions evolve and transform fascinates me.
+As for my professional interests - they're distributed algorithms. There's a certain unpredictable beauty with scaling laws.
 
-I've been on a sort of scaling journey myself. I joined Intel in 2019 while stuyding for my Master's. Joining Intel was like stepping into a new universe from traditional software/app development. Metrics that were once my bread and butter became secondary. Suddenly, I was in the world of CPI, frequency scaling, power management, and the intricacies of running Nginx/Redis with micro-architecture considerations. 
+I joined Intel in 2019 while stuyding for my Master's. I came as a traditional backend dev. Worked for Datacenter performance. I was now in the world of CPI, frequency scaling, power management, and the intricacies of running Nginx/Redis with micro-architecture considerations. All answers were around these questions-
+- how to optimize silicon for software and 
+- how to optimize software for silicon
 
 It came to me that there's more to progamming than just algorithmic and space complexity. It's about how to run your code efficiently on hardware, where sometimes the hardware cares less about your code's complexity and more about things like subNUMA clustering and cache coherency.
 

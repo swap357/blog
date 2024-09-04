@@ -1,11 +1,13 @@
 +++
 author = "Swapnil Patel"
-title = "understand your real-estate: understanding VMs on public cloud"
+title = "understanding: rented (linux) VMs"
 date = "2023-05-06"
 description = ""
 tags = [
 "cpu",
 "cloud",
+"linux",
+"unix",
 "vm"
 ]
 
@@ -27,9 +29,13 @@ Why would one choose such chaos ? because we're too lazy to do it all, and it's 
 
 Now, speaking of neatly separated, it's mostly KVM with hardware-assisted virtualization. KVM turns the Linux kernel into a hypervisor, enabling you to run multiple, isolated virtual machines (VMs) on a single physical server.
 
-This might be the first command i run every time i log onto a new system -
+To make the most of a VM, you need to understand its allocated resources—CPU, memory, storage, and virtualization technology. A good starting point is to check the basic system information right after provisioning.
 
-```
+#### Key Command: `lscpu`
+
+Run `lscpu` to get a detailed overview of the CPU and virtualization features:
+
+```bash
 ubuntu@b2-7-us-west-or-1:~$ lscpu
 Architecture:            x86_64
   CPU op-mode(s):        32-bit, 64-bit
@@ -58,35 +64,79 @@ Caches (sum of all):
 NUMA:                    
   NUMA node(s):          1
   NUMA node0 CPU(s):     0,1
-<redacted>
+...some more
 ``` 
 
-#### Observation:
+#### Observations:
 
-The Virtualization: VT-x line indicates that your CPU supports Intel VT-x, a hardware feature that enhances performance and security of the virtual machines.
-
-Hypervisor vendor: KVM confirms that KVM is the hypervisor being used, providing the layer that allows multiple operating systems to share a single hardware host.
-
-Okay, let's get practical. We need something more - need to understand how of all this is connected - a blueprint of the building- system's topology.
+- **Virtualization Technology:** The line `Virtualization: VT-x` indicates the CPU supports Intel VT-x, a hardware feature that enhances virtualization performance.
+- **Hypervisor:** `Hypervisor vendor: KVM` confirms that KVM (Kernel-based Virtual Machine) is the underlying hypervisor, managing multiple VMs on a single physical server.
+- **NUMA Configuration:** The presence of NUMA (Non-Uniform Memory Access) nodes suggests optimized memory allocation based on proximity to CPU cores, improving performance for memory-intensive tasks.
 
 First, update package lists and install `hwloc`:
-```
+```bash
 apt update
 apt install hwloc
 ```
 
 Then, generate a visual representation of system's topology:
-```
+```bash
 lstopo --of png system_topology.png
 ```
-This command generates a PNG image, giving a visual layout of our system's architecture, including CPUs, memory, caches, and their interconnections.
+   This command creates a visual layout showing the arrangement of CPUs, caches, and memory.
 
 ![systemTopology](https://autoscaler.sh/images/system_topology.jpg)
 
-#### Observation:
+#### Observations:
+
 Package L#0 and Package L#1, contains a single core (Core L#0 and Core L#1) with one processing unit (PU) each, implying this is a system with two physical CPU cores in total. This aligns with the common configuration of lightweight virtualized environments or entry-level servers, where resources are often minimized to fit specific use cases or workloads that do not require high parallel processing capabilities.
 
 The presence of NUMA (Non-Uniform Memory Access) nodes indicates that the system can optimize memory access patterns based on the proximity of memory to the cores, reducing latency and increasing performance for memory-intensive tasks. The NUMA node L#0 P#0 is associated with a block of memory, likely representing the total accessible RAM for that node.
 
 #### Conclusion
-But why should we care about all of this? Well, understanding our VM's environment helps us know what we paid for. No more blindly assigning tasks or resources. We see what's available, plan accordingly, and execute efficiently, optimize for what we have. that simple.
+But why should we care about all of this? Well, understanding our VM's environment helps us know what we paid for. No more blindly assigning tasks or resources. We see what's available, plan accordingly, and execute efficiently, optimize for what we have.
+
+---
+
+### Cheat Sheet
+
+some essential commands to help get to know your system better:
+
+**System Information:**
+- `lscpu` - CPU details
+- `lsblk` - Block devices
+- `lshw` - Hardware configuration
+- `free -h` - Memory usage
+- `dmidecode` - DMI table contents
+- `numactl --hardware` - NUMA topology
+
+**Storage:**
+- `df -h` - Disk space usage
+- `du -sh /path/to/directory` - Directory size
+- `fdisk -l` - Disk partitions
+- `mount | column -t` - Mounted filesystems
+
+**Network:**
+- `ip a` - Network interfaces
+- `ip route` - Routing table
+- `ss -tuln` - Listening ports
+- `ping <hostname>` - Connectivity test
+- `traceroute <hostname>` - Path trace
+- `netstat -s` - Network stats
+- `ethtool <interface>` - Ethernet settings
+
+**Performance:**
+- `top` / `htop` - Process monitoring
+- `iostat -xz 1` - I/O stats
+- `vmstat 1` - Virtual memory stats
+- `free -m` - Memory usage in MB
+- `sar -u 1 3` - System activity
+- `nmon` - Performance monitoring
+
+**Security:**
+- `uname -a` - System info
+- `ps aux --sort=-%mem` - Processes sorted by memory usage
+- `dmesg | tail` - Kernel messages
+- `journalctl -xe` - System logs
+- `chkconfig --list` - Service run-level info
+- `ufw status` - Firewall status
