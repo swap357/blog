@@ -11,13 +11,13 @@ tags = [
 comments = true
 +++
 
-I've been long-time enthusiast of adventure and strategy games. My distinct memory is playing Poptropica - online adventure game where you can choose one of many islands, each with its own unique story. You interact with NPCs (Non-Player Characters) to understand the story, find clues and solve mystery of the island. 
-Other examples - Zelda, Witcher
+I've played text adventure games for years. Remember zork? That was the real deal. No fancy graphics, just pure text and imagination. You'd type commands like "go north" or "take sword" and the game would respond. Simple, but effective.
 
-Traditionally confined to scripted behaviors and limited interactions, have long been the bottleneck to immersive gameplay. 
-Now, imagine NPCs that don't just respond, but learn, adapt, and evolve in real-time as they interact with the game world and the player.
+These games had NPCs with basic scripted responses. Nothing fancy, just if-then logic. You'd ask them something, they'd spit out a pre-written answer. Worked well enough for the time.
 
-LM Agents based on auto-regressive LLMs can be made to act with more intelligence and creativity. 
+The games were complex enough to where you need memory and reasoning, but not so complex that you can't solve them. makes for a good testbed for ai agents.
+
+Large language models trained on massive text datasets can power these NPCs. With the right prompting, they can maintain some semblance of consistent behavior and "personality". 
 
 Some recent references:
 

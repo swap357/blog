@@ -1,24 +1,17 @@
 {{ define "main" -}}
-<div class="mac-window">
-  <div class="window-header">
-    <div class="window-buttons">
-      <span class="close"></span>
-      <span class="minimize"></span>
-      <span class="maximize"></span>
-    </div>
-    <div class="window-title">Posts</div>
+<div class="post-list">
+  <h1 class="page-title">Posts</h1>
+  <ul class="post-items">
+    {{ range first 10 (where .Site.RegularPages "Type" "post").ByDate.Reverse }}
+    <li class="post-item">
+      <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+  {{ if gt (len (where .Site.RegularPages "Type" "post")) 10 }}
+  <div class="more-posts">
+    <a href="{{ "/post/" | relURL }}" class="more-link">View all posts</a>
   </div>
-  <div class="window-content">
-    <div class="post-list">
-      <pre class="post-items"><code>total {{ len (where .Site.RegularPages "Type" "post") }}
-{{ range first 10 (where .Site.RegularPages "Type" "post").ByDate.Reverse }}-rw-r--r-- 1 swapnil users {{ .WordCount | printf "%6d" }} {{ .Date.Format "Jan 02 15:04" }} <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
-{{ end }}</code></pre>
-      {{ if gt (len (where .Site.RegularPages "Type" "post")) 10 }}
-      <div class="more-posts">
-        <a href="{{ "/post/" | relURL }}" class="more-link">View all posts</a>
-      </div>
-      {{ end }}
-    </div>
-  </div>
+  {{ end }}
 </div>
 {{- end }}

@@ -31,44 +31,42 @@ html {
 
 /* Updated Post List Styles */
 .post-list {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  font-family: "Courier New", Courier, monospace;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 
 .page-title {
   font-size: 2rem;
   font-weight: bold;
-  margin: 0;
-  padding: 1rem;
+  margin-bottom: 2rem;
   color: #333;
-  background-color: #f0f0f0;
   border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
 }
 
 .post-items {
-  background-color: #1e1e1e;
-  color: #d4d4d4;
-  margin: 0;
-  padding: 1rem;
-  border-radius: 0;
-  overflow-x: auto;
+  list-style-type: none;
+  padding: 0;
 }
 
-.post-items code {
-  white-space: pre;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  width: 100%;
+.post-item {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.post-item:hover {
+  background-color: #f0f0f0;
 }
 
 .post-link {
-  color: #569cd6;
+  color: #0066cc;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .post-link:hover {
@@ -88,14 +86,14 @@ html {
 
 @media (min-width: 48em) {
   .content {
-    margin-left: 10rem; /* Adjust this value to match your sidebar width */
+    margin-left: 20rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 22rem; /* Adjust this value to match your sidebar width */
+    margin-left: 22rem;
     margin-right: 4rem;
   }
 }
@@ -127,23 +125,23 @@ pre {
 /* Add this to the end of your existing CSS */
 
 .more-posts {
-  margin-top: 1rem;
-  text-align: right;
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .more-link {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #569cd6;
-  color: #1e1e1e;
+  background-color: #0066cc;
+  color: #fff;
   text-decoration: none;
   border-radius: 3px;
-  font-family: "Courier New", Courier, monospace;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .more-link:hover {
-  background-color: #4a85c7;
+  background-color: #0056b3;
 }
 
 /* Vertical centering for sidebar and main content */
