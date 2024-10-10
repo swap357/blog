@@ -6,17 +6,21 @@ aliases = ["about-us","about-hugo","contact"]
 author = "Swapnil Patel"
 +++
 
-### About
+software engineer.
 
-Software Engineer. My work involves studying and optimizing open-source projects for data center deployments, hardware/software co-optimization, and [defining benchmarks](https://www.spec.org/blog/2023/03/cloudbenchmarks.html).
+- **Anaconda** (Sep24-Present)
+- **Intel** (Jan19-Aug24)
 
-Leisure times are spent exploring Palo Alto, Mountain View, and the South Bay, street photography, and pickleball at local parks.
+My work and learnings have been around - 
+- Data Center and Computer Architecture
+- High performance python
+- Open source projects
+- [Data center benchmarks](https://www.spec.org/blog/2023/03/cloudbenchmarks.html) and performance analysis
 
 ### Contact
 
 To connect, reach out via -
-- email: swapnilpatel357@gmail.com
 - Twitter/X: [@swap357](https://x.com/swap357).
-
+- LinkedIn: [swap357](https://www.linkedin.com/in/swap357/)
 
 

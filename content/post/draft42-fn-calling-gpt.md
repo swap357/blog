@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "draft42: a simple chatbot app using Streamlit with function-calling"
+title = "draft42: streamlit chatbot"
 date = "2024-03-04"
 description = ""
 tags = [
@@ -22,4 +22,4 @@ Here is a snapshot of bot in action:
 
 ![draft42](https://autoscaler.sh/images/draft42.png)
 
-You can find the code on my [github](https://github.com/swap357/draft42).
+find the code on my [github](https://github.com/swap357/draft42).

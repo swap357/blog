@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="mac-window">
+  <div class="window-header">
+    <div class="window-buttons">
+      <span class="close"></span>
+      <span class="minimize"></span>
+      <span class="maximize"></span>
+    </div>
+    <div class="window-title">Posts</div>
+  </div>
+  <div class="window-content">
+    <div class="post-list">
+      <pre class="post-items"><code>total {{ len (where .Site.RegularPages "Type" "post") }}
+{{ range (where .Site.RegularPages "Type" "post").ByDate.Reverse }}-rw-r--r-- 1 swapnil users {{ .WordCount | printf "%6d" }} {{ .Date.Format "Jan 02 15:04" }} <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
+{{ end }}</code></pre>
+    </div>
+  </div>
+</div>
+{{ end }}
