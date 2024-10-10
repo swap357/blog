@@ -14,26 +14,25 @@ tags = [
 comments = true
 +++
 
-Recently, I've been trying to understand how VMs on public cloud are prepared for customers. As a frugal user who's squeezed the most out of free cloud tiers, moving to a paid model is a big leap. I'd like to know what exactly I'm paying for.
+Let's talk about rented VMs on public clouds. As someone who's used free tiers extensively, I wanted to understand what I'm actually paying for when moving to paid instances.
 
-When an VM (ec2 instance) is launched, it's a slice of one giant physical system (AKA bare-metal), just - "neatly" separated from others. 
-You get an apartment but with neighbors, and a lot of them. Some quiet, most noisy, you just hope the walls aren't thin.
+When you spin up a VM, you're getting a slice of a physical machine, isolated from other tenants. It's like living in an apartment complex - you have your own space, but you're sharing the building.
 
-Why would one choose such chaos ? because we're too lazy to do it all, and it's a full-time job for someone else-
-- keep a system up and running 24*7 * 365 days. (CSP SLA: 99.9% avalaiblity)
-- Keep up hardware needs- cpu, memory, storage for users at scale.
-- have an internet network to the system that has a dedicated IP (Costs twice as the internet plan) 
-- manual maintainence and updates
-- Firewall, Anti-malware for protection
-- electricity costs
+Why bother with this setup? Because running your own hardware is a pain:
+- 24/7 uptime management
+- Scaling hardware resources
+- Networking and IP allocation
+- System maintenance and updates 
+- Security (firewalls, anti-malware)
+- Power costs
 
-Now, speaking of neatly separated, it's mostly KVM with hardware-assisted virtualization. KVM turns the Linux kernel into a hypervisor, enabling you to run multiple, isolated virtual machines (VMs) on a single physical server.
+Most cloud providers use KVM for virtualization. It turns the Linux kernel into a hypervisor to run multiple isolated VMs on one physical box.
 
-To make the most of a VM, you need to understand its allocated resources—CPU, memory, storage, and virtualization technology. A good starting point is to check the basic system information right after provisioning.
+To understand your VM's capabilities, you need to know its allocated resources. Start by checking the basic system info after provisioning-
 
-#### Key Command: `lscpu`
+#### Command: `lscpu`
 
-Run `lscpu` to get a detailed overview of the CPU and virtualization features:
+Run `lscpu` to see CPU and virtualization details:
 
 ```bash
 ubuntu@b2-7-us-west-or-1:~$ lscpu
@@ -89,13 +88,12 @@ lstopo --of png system_topology.png
 
 #### Observations:
 
-Package L#0 and Package L#1, contains a single core (Core L#0 and Core L#1) with one processing unit (PU) each, implying this is a system with two physical CPU cores in total. This aligns with the common configuration of lightweight virtualized environments or entry-level servers, where resources are often minimized to fit specific use cases or workloads that do not require high parallel processing capabilities.
+Two packages, each with one core and one PU. Total of two physical CPU cores.
 
-The presence of NUMA (Non-Uniform Memory Access) nodes indicates that the system can optimize memory access patterns based on the proximity of memory to the cores, reducing latency and increasing performance for memory-intensive tasks. The NUMA node L#0 P#0 is associated with a block of memory, likely representing the total accessible RAM for that node.
+NUMA nodes present. Means memory access is optimized based on which core is closest. Can help with memory-heavy tasks. NUMA node L#0 P#0 likely shows all the RAM this node can use.
 
 #### Conclusion
-But why should we care about all of this? Well, understanding our VM's environment helps us know what we paid for. No more blindly assigning tasks or resources. We see what's available, plan accordingly, and execute efficiently, optimize for what we have.
-
+Why bother with this stuff? to know what you're paying for. We see what's available, plan accordingly, execute efficiently, and optimize for what we have.
 ---
 
 ### Cheat Sheet

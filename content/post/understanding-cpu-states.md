@@ -14,21 +14,23 @@ tags = [
 comments = true
 +++
 
-Modern datacenter CPUs implement variations of something called- P states and C states, with the basic idea of adjusting CPU performance and power consumption based on demand.
+CPUs in datacenters use P states and C states to manage performance and power use.
 
-These concepts are part of the Advanced Configuration and Power Interface (ACPI) standard, which is supported by most modern processors and operating systems.
+ACPI defines these states. Most CPUs and OSes support it.
 
-### P States: Performance Control
+### P States
 
-**P states (Performance States)** control the actual speed of the CPU and with it the power usage.
-- Lower P state numbers indicate higher performance and increased power consumption.
-- P states control the CPU's operating frequency (clock speed) and voltage, balancing speed against power efficiency.
+P states control CPU speed and power:
+- Lower P number = faster CPU, more power used
+- Changes clock speed and voltage
 
-### C States: Idle Power Saving
+### C States 
 
-**C states (Idle States)** reduce power usage when the CPU is not busy:
-- Deeper C states consume less power but take longer for the CPU to wake up.
-- The deeper the C state, the more aggressively the CPU saves power, potentially turning off parts of the CPU.
+C states save power when CPU is idle:
+- Deeper C state = more power saved, longer wakeup time
+- Can turn off CPU parts to save more power
+
+just ways to balance speed and power use.
 
 ### Checking Current CPU Settings
 

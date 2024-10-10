@@ -13,25 +13,20 @@ Hello!
 
 I'm Swapnil Patel-
 
-This is a second attempt at reviving my blog and practice some journal-ing.
-I intend to write on my learnings, share movie/tv quotes, trip reviews and life in general.
+This blog is a record of my work on computer systems and making them run faster.
 
-I've been writing code 3 quarters of my life so far, with the most recent quarter being spent in the US. I started off my journey on the beautiful west coast of India and later ended up on another west coast, just half-way around the world- the sunny California.
+I've been writing code for most of my life. I started in India and now I work in California. Both places have lots of tech jobs.
 
-As for my professional interests - they're distributed algorithms. There's a certain unpredictable beauty with scaling laws.
+I like working on systems that use many computers together.
 
-I joined Intel in 2019 while stuyding for my Master's. I came as a traditional backend dev. Worked for Datacenter performance. I was now in the world of CPI, frequency scaling, power management, and the intricacies of running Nginx/Redis with micro-architecture considerations. All answers were around these questions-
-- how to optimize silicon for software and 
-- how to optimize software for silicon
+At Intel, I learned about how CPUs work. I studied things like how fast CPUs run, how to save power, and how to make software applications like Nginx and Redis work better at single node level as well as Datacenter scale.
 
-It came to me that there's more to progamming than just algorithmic and space complexity. It's about how to run your code efficiently on hardware, where sometimes the hardware cares less about your code's complexity and more about things like subNUMA clustering and cache coherency.
+My job has been about two main things:
+1. How to make better computer architecture for software
+2. How to write software that work well on those architectures
 
-I plan to dive deep into some of these topics and share my insights on this blog.
+I found out that writing good code isn't just about smart math or using less memory. It's also about understanding how the layout of the silicon works when there's traffic. Sometimes, the chip cares more about how data moves around inside it than how clever your code is.
 
-I also indulge in some casual street photography and love exploring Palo Alto, Mountain View, and the South Bay in general. You might find me socializing at local meetups.
+I intend to write more about my learnings and experiences here.
 
-If you're reading this, and want to chat, feel free to drop me an email at swapnilpatel357@gmail.com or DM on Twitter @swap357. If you bump into me at one of the meetups, let's chat about projects, code, or anything under the sun!
-
-Until next time,
-
-Swapnil
+Thank you for reading!

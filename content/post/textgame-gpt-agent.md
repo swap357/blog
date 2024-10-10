@@ -56,7 +56,7 @@ https://github.com/biobootloader/text-agent/blob/main/walkthroughs/history-agent
 
 ## Observations
 
-- **It actually works!** The agent managed to solve some pretty tricky puzzles.
-- **Memory matters**: had to get clever about how the pass and retain info within limited context-langth. Too little memory and gets stuck in a loop, too much and it gets slow (+$$).
-- **Exploration is key**: Sometimes the agent needs to try random stuff to discover new things, just like a human player would. think epsilon for RL.
-**It's not perfect**: The agent still makes weird choices sometimes like mostly getting eaten or falling off cliff. 
+- Functional: The agent demonstrates capability in solving complex puzzles.
+- Memory optimization: Efficient memory management is crucial. Insufficient memory leads to cyclic behavior, while excessive memory impacts performance and resource utilization, cost.
+- Stochastic exploration: Random action sampling is necessary for state space exploration, similar to epsilon-greedy strategies in reinforcement learning.
+- Limitations: The agent exhibits suboptimal decision-making in certain scenarios, resulting in failure states such as termination or environmental hazards.
