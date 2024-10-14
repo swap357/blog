@@ -1,3 +1,36 @@
-baseURL = 'http://autoscaler.sh/'
+baseURL = "https://autoscaler.sh/"  # Replace with your actual domain
 languageCode = 'en-us'
-title = 'AutoScaler'
+title = 'autoscaler.sh'
+theme = "hyde"
+
+relativeURLs = true
+enableEmoji = true
+googleAnalytics = ""
+enableRobotsTXT = true
+copyright = "The views and content expressed on this site are strictly my own and not affiliated with any other party. <br> &copy; 2024, Swapnil Patel"
+
+# Main menu items
+[Menus]
+  main = [
+    {Name = "Posts <", URL = "/post/", Weight = 1},
+    {Name = "About", URL = "/about/", Weight = 2},
+    {Name = "Github", URL = "https://github.com/swap357/", Weight = 3, target = "_blank"},
+    {Name = "LinkedIn", URL = "https://www.linkedin.com/in/swap357/", Weight = 4, target = "_blank"},
+    {Name = "X", URL = "https://x.com/swap357", Weight = 5, target = "_blank"}
+  ]
+
+[params]
+  description = """hi, I'm <a href="https://x.com/swap357" target="_blank"> swapnil</a>!<br>
+                  I like to experiment, <br>
+                  take stuff apart, <br>
+                  and build things.
+                  <br>"""
+  mainSections = ["post"]
+  externalLinksNewTab = true  # Add this line
+
+[permalinks]
+  post = "/post/:year/:month/:title/"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

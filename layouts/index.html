@@ -1,0 +1,17 @@
+{{ define "main" -}}
+<div class="post-list">
+  <h1 class="page-title">Posts</h1>
+  <ul class="post-items">
+    {{ range first 10 (where .Site.RegularPages "Type" "post").ByDate.Reverse }}
+    <li class="post-item">
+      <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+  {{ if gt (len (where .Site.RegularPages "Type" "post")) 10 }}
+  <div class="more-posts">
+    <a href="{{ "/post/" | relURL }}" class="more-link">View all posts</a>
+  </div>
+  {{ end }}
+</div>
+{{- end }}

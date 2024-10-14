@@ -1,0 +1,27 @@
+<aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="{{ .Site.BaseURL }}"><h1>{{ .Site.Title }}</h1></a>
+      <p class="lead">
+      {{ with .Site.Params.description | safeHTML }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="{{ .Site.BaseURL }}">Home</a></li>
+        {{ range .Site.Menus.main -}}
+          {{ if eq .Name "Posts <" }}
+            <li class="important-menu-item"><a href="{{.URL}}"> {{ .Name }} </a></li>
+          {{ else if hasPrefix .URL "/" }}
+            <li><a href="{{.URL}}"> {{ .Name }} </a></li>
+          {{ else }}
+            <li><a href="{{.URL}}" target="_blank" rel="noopener noreferrer"> {{ .Name }} </a></li>
+          {{ end }}
+        {{- end }}
+      </ul>
+    </nav>
+
+    <p>{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}</p>
+  </div>
+</aside>
