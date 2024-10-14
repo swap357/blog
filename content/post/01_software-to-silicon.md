@@ -1,12 +1,11 @@
 +++
 author = "Swapnil Patel"
-title = "from software to silicon"
-date = "2023-03-02"
+title = "memo/ from software to silicon"
 description = ""
 tags = [
 "blog"
 ]
-
+index = 1
 +++
 
 Hello!

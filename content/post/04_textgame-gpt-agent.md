@@ -1,7 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "project: zork1 textgame gpt-agent"
-date = "2023-08-15"
+title = "project/ textgame-gpt-agent"
 description = ""
 tags = [
 "code",
@@ -9,6 +8,7 @@ tags = [
 ]
 
 comments = true
+index = 4
 +++
 
 I've played text adventure games for years. Remember zork? That was the real deal. No fancy graphics, just pure text and imagination. You'd type commands like "go north" or "take sword" and the game would respond. Simple, but effective.

@@ -1,7 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "project: profile explainer"
-date = "2024-04-04"
+title = "project/ profile-explainer"
 description = ""
 tags = [
 "code",
@@ -9,6 +8,7 @@ tags = [
 ]
 
 comments = true
+index = 2
 +++
 
 Worked on this at the Mistral Hackathon @ Shack15, SF, March 23-24 2024.

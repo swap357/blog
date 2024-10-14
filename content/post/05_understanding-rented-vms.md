@@ -1,7 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understanding: rented (linux) VMs"
-date = "2023-05-06"
+title = "understanding/ rented-vms"
 description = ""
 tags = [
 "cpu",
@@ -12,6 +11,7 @@ tags = [
 ]
 
 comments = true
+index = 5
 +++
 
 Let's talk about rented VMs on public clouds. As someone who's used free tiers extensively, I wanted to understand what I'm actually paying for when moving to paid instances.

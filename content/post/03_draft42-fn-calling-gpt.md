@@ -1,7 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "draft42: streamlit chatbot"
-date = "2024-03-04"
+title = "project/ draft42-fn-calling-bot"
 description = ""
 tags = [
 "code",
@@ -9,6 +8,7 @@ tags = [
 ]
 
 comments = true
+index = 3
 +++
 
 I've been working on a simple chatbot app using Streamlit. 

@@ -1,7 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understanding: CPU states"
-date = "2023-05-10"
+title = "understanding/ cpu-states"
 description = ""
 tags = [
 "cpu",
@@ -12,6 +11,7 @@ tags = [
 ]
 
 comments = true
+index = 6
 +++
 
 CPUs in datacenters use P states and C states to manage performance and power use.

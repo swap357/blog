@@ -1,7 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understanding: system profiles with flamegraphs"
-date = "2023-10-01"
+title = "understanding/ system-profiles"
 description = ""
 tags = [
 "cpu",
@@ -12,6 +11,7 @@ tags = [
 "flamescope"
 ]
 comments = true
+index = 7
 +++
 
 
