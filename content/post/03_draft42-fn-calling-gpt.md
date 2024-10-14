@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "project/ draft42-fn-calling-bot"
+title = "project: draft42-fn-calling-bot"
 description = ""
 tags = [
 "code",

@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understanding/ system-profiles"
+title = "understanding: system-profiles"
 description = ""
 tags = [
 "cpu",

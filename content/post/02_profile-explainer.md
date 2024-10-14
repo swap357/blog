@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "project/ profile-explainer"
+title = "project: profile-explainer"
 description = ""
 tags = [
 "code",

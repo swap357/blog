@@ -3,6 +3,16 @@ html {
   font-size: 16px;
 }
 
+/* Add this to your existing CSS */
+.sidebar-center h1 a {
+  color: #fff; /* or any light color you prefer */
+  text-decoration: none;
+}
+
+.sidebar-center h1 a:hover {
+  text-decoration: underline;
+}
+
 .sidebar-about h1 {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
   font-size: 2rem;
@@ -52,8 +62,8 @@ html {
 }
 
 .post-item {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  margin-bottom: 0.25rem; /* Further reduced to 0.25rem */
+  padding: 0.125rem; /* Further reduced to 0.125rem */
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
@@ -81,18 +91,19 @@ html {
 .content {
   padding: 2rem;
   max-width: none;
+  margin-left: 20rem; /* Adjust this value to match your sidebar width */
 }
 
 @media (min-width: 48em) {
   .content {
-    margin-left: 20rem;
+    margin-left: 20rem; /* Adjust this value to match your sidebar width */
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 22rem;
+    margin-left: 22rem; /* Adjust this value to match your sidebar width */
     margin-right: 4rem;
   }
 }
@@ -148,71 +159,29 @@ html, body {
   height: 100%;
 }
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  position: fixed;
-  width: 25rem;
-}
-
 .content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   min-height: 100vh;
   padding: 2rem 0;
 }
 
-.post-list {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  /* font-family: "Courier New", Courier, monospace; */
-}
-
-.post-items {
-  background-color: transparent;
-  color: #d4d4d4;
-  margin: 0;
-  padding: 0;
-  border-radius: 0;
-  overflow-x: auto;
-}
-
-.post-items code {
-  white-space: pre;
-  /* font-family: "Courier New", Courier, monospace; */
+/* Add this to your existing CSS */
+.breadcrumbs {
   font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  width: 100%;
+  margin-bottom: 1rem;
 }
 
-/* Adjust responsive styles */
-@media (max-width: 48em) {
-  .mac-window {
-    width: 95%;
-    margin: 1rem auto;
-  }
-
-  .content {
-    padding: 1rem 0;
-  }
+.breadcrumbs a {
+  color: #0066cc;
+  text-decoration: none;
 }
 
-/* Existing media queries... */
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
 
-@media (max-width: 48em) {
-  .sidebar {
-    height: auto;
-    position: relative;
-  }
-  
-  .content {
-    min-height: calc(100vh - 14rem); /* Adjust based on your sidebar height on mobile */
-  }
+.breadcrumbs .current {
+  color: #666;
 }
 
 /* Mac Window Styles */
@@ -275,8 +244,6 @@ html, body {
   left: auto;
 }
 
-/* Existing media queries... */
-
 /* GitHub Markdown CSS */
 .markdown-body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -286,8 +253,7 @@ html, body {
   color: #333;
   background-color: #fff;
   padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 70%; /* Use full width */
 }
 
 .markdown-body a {
@@ -440,4 +406,156 @@ html, body {
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+
+.about-page {
+  /* Add any specific styles for the about page here */
+}
+
+.about-page ul, .about-page ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.about-page li {
+  margin-bottom: 0.5em;
+}
+
+.about-page p {
+  margin-bottom: 1em;
+}
+
+.about-page a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.about-page a:hover {
+  text-decoration: underline;
+}
+
+/* Add or modify these styles */
+.content {
+  padding: 2rem;
+  max-width: none;
+}
+
+.post-list,
+.post,
+.about-page,
+.term-list,
+.taxonomy-list,
+.markdown-body {
+  max-width: none; /* Remove the max-width limitation */
+  margin: 0; /* Remove auto margins */
+  padding: 2rem 1rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 48em) {
+  .content {
+    margin-left: 20rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .content {
+    margin-left: 22rem;
+    margin-right: 4rem;
+  }
+}
+
+/* Remove any conflicting styles for .post, .about-page, etc. if they exist */
+
+/* Add this to push the sidebar down */
+.sidebar {
+  padding-top: 2rem; /* Adjust this value as needed */
+}
+
+/* If the above doesn't work, try this instead */
+.sidebar-sticky {
+  padding-top: 2rem; /* Adjust this value as needed */
+}
+
+/* If you're using a different class for your sidebar, replace .sidebar with that class */
+
+/* Add these styles to your existing CSS */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 2rem;
+  position: fixed;
+  width: 20rem; /* Adjust this value to match your sidebar width */
+}
+
+.container.sidebar-sticky {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-about {
+  flex-grow: 0;
+}
+
+.sidebar-center {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.copyright-container {
+  flex-shrink: 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Adjust existing styles if needed */
+.sidebar-sticky {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+}
+
+.sidebar-nav-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar-nav {
+  padding-left: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-external-links {
+  margin-top: 1rem;
+}
+
+.sidebar-external-links .sidebar-nav {
+  padding-left: 0;
+}
+
+.sidebar-external-links .sidebar-nav li {
+  margin-bottom: 0.5rem;
 }

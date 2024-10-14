@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understanding/ cpu-states"
+title = "understanding: cpu-states"
 description = ""
 tags = [
 "cpu",

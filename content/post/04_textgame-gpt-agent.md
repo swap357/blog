@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "project/ textgame-gpt-agent"
+title = "project: textgame-gpt-agent"
 description = ""
 tags = [
 "code",

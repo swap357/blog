@@ -21,9 +21,8 @@ copyright = "The views and content expressed on this site are strictly my own an
 
 [params]
   description = """hi, I'm <a href="https://x.com/swap357" target="_blank"> swapnil</a>!<br>
-                  I like to experiment, <br>
-                  take stuff apart, <br>
-                  and build things.
+                  This is a log of my experiments, <br>
+                  breaking and building things.
                   <br>"""
   mainSections = ["post"]
   externalLinksNewTab = true  # Add this line

@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "memo/ from software to silicon"
+title = "memo: from software to silicon"
 description = ""
 tags = [
 "blog"

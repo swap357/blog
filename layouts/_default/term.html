@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="term-list">
+  <h1 class="page-title">{{ .Title }}</h1>
+  <ul class="post-items">
+    {{ range .Pages.ByParam "index" }}
+    <li class="post-item">
+      <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

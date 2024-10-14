@@ -1,6 +1,6 @@
 +++
 author = "Swapnil Patel"
-title = "understanding/ rented-vms"
+title = "understanding: rented-vms"
 description = ""
 tags = [
 "cpu",
