@@ -375,63 +375,149 @@ html, body {
 
 /* Existing styles... */
 
-/* Add these new styles at the end of the file */
-
-.sidebar-nav {
+/* Update these styles */
+.sidebar {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  padding-top: 2rem;
+  position: fixed;
+  width: 20rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Add these new styles */
+@media (max-width: 48em) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
+    background-color: #202020;
+    transform: translateY(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateY(0);
+  }
+
+  .container.sidebar-sticky {
+    height: auto;
+  }
+
+  .sidebar-about {
+    display: none;
+  }
+
+  .sidebar-center {
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar-nav li {
+    margin-bottom: 0.5rem;
+  }
+
+  .content {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 4rem;
+  }
+
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+/* Existing styles... */
+
+/* Add these styles to your existing CSS */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 2rem;
+  position: fixed;
+  width: 20rem; /* Adjust this value to match your sidebar width */
+}
+
+.container.sidebar-sticky {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-about {
+  flex-grow: 0;
+}
+
+.sidebar-center {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.copyright-container {
+  flex-shrink: 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Adjust existing styles if needed */
+.sidebar-sticky {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+}
+
+.sidebar-nav-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar-nav {
   padding-left: 0;
 }
 
 .sidebar-nav li {
-  list-style-type: none;
+  margin-bottom: 0.5rem;
 }
 
-.important-menu-item {
-  align-self: flex-end;
-  font-size: 1.5rem;
-  /* margin-top: 1rem;
-  margin-bottom: 1rem; */
+.sidebar-external-links {
+  margin-top: 1rem;
 }
 
-@media (max-width: 48em) {
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .important-menu-item {
-    order: -1;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+.sidebar-external-links .sidebar-nav {
+  padding-left: 0;
 }
 
-.about-page {
-  /* Add any specific styles for the about page here */
-}
-
-.about-page ul, .about-page ol {
-  padding-left: 2em;
-  margin-bottom: 1em;
-}
-
-.about-page li {
-  margin-bottom: 0.5em;
-}
-
-.about-page p {
-  margin-bottom: 1em;
-}
-
-.about-page a {
-  color: #0366d6;
-  text-decoration: none;
-}
-
-.about-page a:hover {
-  text-decoration: underline;
+.sidebar-external-links .sidebar-nav li {
+  margin-bottom: 0.5rem;
 }
 
 /* Add or modify these styles */
