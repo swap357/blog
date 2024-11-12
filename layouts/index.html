@@ -4,7 +4,7 @@
   {{ partial "breadcrumbs.html" . }}
   <h1 class="page-title">Recent Posts</h1>
   <ul class="post-items">
-    {{ range first 5 (sort (where .Site.RegularPages "Type" "post") ".Params.index" "desc") }}
+    {{ range first 10 (sort (where .Site.RegularPages "Type" "post") ".Params.index" "desc") }}
     <li class="post-item">
       <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
     </li>
