@@ -19,6 +19,40 @@ limits parallel processing. new python interpreter released Oct 2024: 3.13 and 3
 ## the backstory
 so we've had this global interpreter lock forever. it tells python- "one thread at a time, please" even if you've got cores sitting idle. bit of a bottleneck.
 
+```ascii
+Python Threading Evolution:
+[1991]────[1994]────────[2024]────>
+  │         │             │
+Python    GIL          py3.13t
+Created   Added     
+```
+
+```ascii
+┌─ Threading:             ┌─ True Parallelism:
+|                         | [Proc1]
+│ [GIL]                   │ [Thread1][Thread2][Thread3]
+│   ↓                     │    ↓        ↓        ↓
+│ One thread at a time    │ Direct CPU core access
+│                         │
+└─ Multiprocessing:       └─ 
+  [Proc1]   [Proc2]   [Proc3]  
+     ↓        ↓        ↓       
+   CPU cores
+```
+
+### The promise of free-threading
+
+| Multiprocessing | True Parallelism |
+|----------------|------------------|
+| High process start costs | No process overhead |
+| High memory overhead | Shared memory |
+| IPC overhead | Lower latency |
+|  | Efficient scaling |
+
+- [PEP](https://peps.python.org/pep-0703/)
+- [how-to](https://docs.python.org/3/howto/free-threading-python.html)
+
+
 ## why gil existed
 wasn't actually a bad call back then:
 - made memory management pretty straightforward
@@ -91,6 +125,28 @@ thread scaling tests:
 ![output_23_0.png](/images/output_23_0.png)
 
 clearly, single-threaded code is going to be slower. speedups are more pronounced in cpu-bound workloads as we scale the number of threads. using thread local variables show great speedup, with no synchronization overhead.
+
+thread-spawn overhead here(take numbers with a grain of salt, good enough for relative comparison):
+
+Python 3.13 (with GIL):
+
+| Operation       | Percentage | Time (µs) |
+|----------------|------------|-----------|
+| TLS Setup      | 73.9%      | 249.96    |
+| Memory Barriers| 14.1%      | 47.69     |
+| RefCount Setup | 12.0%      | 40.11     |
+
+Total per thread: 337.76 µs
+
+Python 3.13t (no-GIL):
+
+| Operation       | Percentage | Time (µs) |
+|----------------|------------|-----------|
+| TLS Setup      | 70.5%      | 242.25    |
+| Memory Barriers| 17.7%      | 60.98     |
+| RefCount Setup | 11.8%      | 40.45     |
+
+Total per thread: 343.68 µs
 
 ## things to watch out for
 
