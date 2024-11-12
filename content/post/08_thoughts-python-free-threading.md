@@ -84,7 +84,7 @@ for t in threads:
 ## performance
 cpu-bound code can actually use all cores now.
 
-some benchmarks i ran:
+some benchmarks i've been working on to compare interpreter internals:
 ![output_13_0.png](/images/output_13_0.png)
 
 thread scaling tests:
