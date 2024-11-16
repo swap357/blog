@@ -13,11 +13,12 @@ index = 8
 +++
 
 ## tl;dr
-python's had this GIL(Global Interpreter Lock) thing since '94. 
-limits parallel processing. new python interpreter released Oct 2024: 3.13 and 3.13t. 3.13t - free-threaded experimental version finally drops the GIL.
+all new python 3.13t release finally drops the GIL.
+adds ~40% overhead to single-threaded code.
+on the bright side, multithreading is now truly parallel. adds its own thread-safety, mgmt overhead.
 
-## the backstory
-so we've had this global interpreter lock forever. it tells python- "one thread at a time, please" even if you've got cores sitting idle. bit of a bottleneck.
+## backstory
+python have had GIL(Global Interpreter Lock) since '94.
 
 ```ascii
 Python Threading Evolution:
@@ -27,8 +28,28 @@ Python    GIL          py3.13t
 Created   Added     
 ```
 
+GIL makes life a little easier for python language devs, helps single-threaded code run faster, makes memory management easier, but prevents true parallelism.
+this is what happens when you try running multiple threads using python:
+
 ```ascii
-┌─ Threading:             ┌─ True Parallelism:
+┌─ Python Process (PID:1234) ──────────┐
+│ gil_locked=1  owner=0x7fff1234       │
+│ T1[0x7fff1234] → RUNNING  [eval]     │
+│ T2[0x7fff5678] → WAITING  [gil_held] │
+│ T3[0x7fff9012] → WAITING  [gil_held] │
+└─────────────────────────────────────-┘
+```
+only one thread can run at a time.
+
+and for this very reason, Oct 2024 marks a major event in python history when 3.13 was released. 
+it was accompanied by a new experimental version, 3.13t, which finally drops the GIL.
+
+
+### The promise of free-threading
+as a workaround to the GIL, python devs have been using multiprocessing. however, this comes with its own overheads. and finally 3.13t aims to change that.
+
+```ascii
+┌─ Threading:             ┌─ True Parallelism(3.13t):
 |                         | [Proc1]
 │ [GIL]                   │ [Thread1][Thread2][Thread3]
 │   ↓                     │    ↓        ↓        ↓
@@ -40,8 +61,6 @@ Created   Added
    CPU cores
 ```
 
-### The promise of free-threading
-
 | Multiprocessing | True Parallelism |
 |----------------|------------------|
 | High process start costs | No process overhead |
@@ -52,20 +71,9 @@ Created   Added
 - [PEP](https://peps.python.org/pep-0703/)
 - [how-to](https://docs.python.org/3/howto/free-threading-python.html)
 
-
-## why gil existed
-wasn't actually a bad call back then:
-- made memory management pretty straightforward
-- single-threaded code ran faster
-- didn't need to worry about thread safety internally
-
-but then multi-core processors happened and parallel workloads became a thing.
-
-## workarounds we've been using
-few ways we've been dealing with it:
+multi-core processors happened and parallel workloads became a thing, more modern languages challenged python's approach. workarounds were no longer good enough.
 
 ### 1. multiprocessing
-when you need actual parallel stuff:
 
 ```python
 import multiprocessing
@@ -90,9 +98,14 @@ async def worker(num):
 ```
 
 ### 3. c extensions
-when you really need that speed
+c extensions can release the GIL by explicitly releasing it during computation:
+```python
+Py_BEGIN_ALLOW_THREADS
+/* Compute-intensive C code here */
+Py_END_ALLOW_THREADS
+```
 
-### how it works now
+### how it works now with 3.13t
 actual parallel execution:
 
 ```python
@@ -161,5 +174,7 @@ Total per thread: 343.68 µs
 - need to think about memory access
 
 ## wrap up
-3.13t is cool. about time python evolved and provided something for high perf devs. it's going to be interesting watching the python ecosystem adapt to this. lots of assumptions about thread safety baked into old code that's gonna need reviewing.
+it's going to be interesting watching the python ecosystem adapt to this. lots of assumptions about thread safety baked into old code that's gonna need reviewing.
 probably going to be some fun bug reports in the next few years as people discover their code, and innumerable packages weren't actually thread-safe, they were just GIL-safe.
+
+> "Simple things should be simple, complex things should be possible." - Alan Kay
