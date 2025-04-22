@@ -38,7 +38,7 @@ here,
 - **`-a`**: Collects data across all processes.
 - **`-g`**: Records call graph (stack trace) information.
 
-you can explore additional commands and scripts here - 
+you can explore additional commands and scripts here -
 https://github.com/swap357/perf-analyzer/blob/main/analysis.ipynb
 
 ### Step 3: Generate a Readable Profile
@@ -72,7 +72,7 @@ This command starts Flamescope and maps the profiles directory into the containe
 ### Toolbox
 
 some more helpful commands-
-```bash
+```
 ## CPU
 # Basic CPU profiling
 sudo perf record -F 99 -a -g -- sleep 60

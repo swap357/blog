@@ -25,7 +25,7 @@ Python Threading Evolution:
 [1991]────[1994]────────[2024]────>
   │         │             │
 Python    GIL          py3.13t
-Created   Added     
+Created   Added
 ```
 
 GIL makes life a little easier for python language devs, helps single-threaded code run faster, makes memory management easier, but prevents true parallelism.
@@ -41,7 +41,7 @@ this is what happens when you try running multiple threads using python:
 ```
 only one thread can run at a time.
 
-and for this very reason, Oct 2024 marks a major event in python history when 3.13 was released. 
+and for this very reason, Oct 2024 marks a major event in python history when 3.13 was released.
 it was accompanied by a new experimental version, 3.13t, which finally drops the GIL.
 
 
@@ -55,9 +55,9 @@ as a workaround to the GIL, python devs have been using multiprocessing. however
 │   ↓                     │    ↓        ↓        ↓
 │ One thread at a time    │ Direct CPU core access
 │                         │
-└─ Multiprocessing:       └─ 
-  [Proc1]   [Proc2]   [Proc3]  
-     ↓        ↓        ↓       
+└─ Multiprocessing:       └─
+  [Proc1]   [Proc2]   [Proc3]
+     ↓        ↓        ↓
    CPU cores
 ```
 
@@ -130,9 +130,6 @@ for t in threads:
 
 ## performance
 cpu-bound code can actually use all cores now.
-
-some benchmarks i've been working on to compare interpreter internals:
-![output_13_0.png](/images/output_13_0.png)
 
 thread scaling tests:
 ![output_23_0.png](/images/output_23_0.png)

@@ -1,31 +1,47 @@
-baseURL = "https://autoscaler.sh/"  # Replace with your actual domain
-languageCode = 'en-us'
-title = 'autoscaler.sh'
-theme = "hyde"
+baseURL = "https://autoscaler.sh/"
+languageCode = "en-us"
+title = "autoscaler.sh"
+author = "Swapnil Patel"
+theme = "hugo-nanx2023"
+
+canonifyurls = true
+publishDir = "public"
+[pagination]
+  pagerSize = 5
 
 relativeURLs = true
 enableEmoji = true
 googleAnalytics = ""
 enableRobotsTXT = true
-copyright = "The views and content expressed on this site are strictly my own and not affiliated with any other party. <br> &copy; 2024, Swapnil Patel"
+hasCJKLanguage = false
 
-# Main menu items
-[Menus]
-  main = [
-    {Name = "Posts <", URL = "/post/", Weight = 1},
-    {Name = "About", URL = "/about/", Weight = 2},
-    {Name = "Github", URL = "https://github.com/swap357/", Weight = 3, target = "_blank"},
-    {Name = "LinkedIn", URL = "https://www.linkedin.com/in/swap357/", Weight = 4, target = "_blank"},
-    {Name = "X", URL = "https://x.com/swap357", Weight = 5, target = "_blank"}
-  ]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
-  description = """hi, I'm <a href="https://x.com/swap357" target="_blank"> swapnil</a>!<br>
+  pagetitle = "autoscaler.sh"
+  description = """hi, I'm <a href="https://x.com/swap357" target="_blank">swapnil</a>!<br>
                   This is a log of my experiments, <br>
                   breaking and building things.
                   <br>"""
+  copyright = "The views and content expressed on this site are strictly my own and not affiliated with any other party. &copy; 2024, Swapnil Patel"
+  faviconfile = "image/favicon.png"
+  logofile = "image/logo.png"
+  logoalt = "autoscaler.sh logo"
   mainSections = ["post"]
-  externalLinksNewTab = true  # Add this line
+  posts_navigation = true
+  uselatex = true
+  highlightjs = true
+  highlightjslanguages = ["r", "python", "bash", "yaml", "json"]
+  progressively = false
+  externalLinksNewTab = true
+  github = "swap357"
+  twitter = "swap357"
+  linkedin = "swap357"
 
 [permalinks]
   post = "/post/:year/:month/:title/"
@@ -33,3 +49,17 @@ copyright = "The views and content expressed on this site are strictly my own an
 [taxonomies]
   category = "categories"
   tag = "tags"
+
+# Main menu items
+[[menu.primary]]
+  identifier = "posts"
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.primary]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 2
+

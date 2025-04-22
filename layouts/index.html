@@ -1,17 +1,30 @@
-{{ define "main" -}}
-<button class="hamburger-menu" onclick="toggleSidebar()">☰</button>
-<div class="post-list">
-  {{ partial "breadcrumbs.html" . }}
-  <h1 class="page-title">Recent Posts</h1>
-  <ul class="post-items">
-    {{ range first 10 (sort (where .Site.RegularPages "Type" "post") ".Params.index" "desc") }}
-    <li class="post-item">
-      <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
-    </li>
-    {{ end }}
-    <li class="post-item">
-      <a href="{{ "/post/" | relURL }}" class="post-link">View all posts</a>
-    </li>
-  </ul>
+{{ define "main" }}
+{{ partial "header" . }}
+
+<div class="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="mx-auto w-700">
+                <div class="markdown">
+                    <div class="landing">
+                        {{ partial "content" . }}
+                    </div>
+                </div>
+
+                <div class="posts">
+                    <ul>
+                        {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+                        {{ range $pages.ByDate.Reverse }}
+                        <li>
+                            <a href="{{ .Permalink }}">{{ .Title }}</a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-{{- end }}
+
+{{ partial "footer" . }}
+{{ end }}

@@ -1,9 +1,0 @@
-{{ define "main" }}
-<article class="post markdown-body {{ if eq .Type "page" }}about-page{{ end }}">
-  {{ partial "breadcrumbs.html" . }}
-  <h1 class="page-title">{{ .Title }}</h1>
-  <div class="post-content">
-    {{ .Content | replaceRE `<a ([^>]*)>` `<a $1 target="_blank" rel="noopener">` | safeHTML }}
-  </div>
-</article>
-{{ end }}
