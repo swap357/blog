@@ -47,6 +47,7 @@ jobs:
           fetch-depth: 0
       - name: Update git submodules
         run: |
+          git config --global --add safe.directory "${GITHUB_WORKSPACE}"
           git submodule sync --recursive
           git submodule update --init --recursive --force
       - name: Setup Pages
