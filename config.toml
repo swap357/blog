@@ -28,7 +28,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
                   This is a log of my experiments, <br>
                   breaking and building things.
                   <br>"""
-  copyright = "The views and content expressed on this site are strictly my own and not affiliated with any other party. &copy; 2024, Swapnil Patel"
+  copyright = "The views and content expressed on this site are strictly my own and not affiliated with any other party. ⓒ 2025, Swapnil Patel"
   faviconfile = "image/favicon.png"
   logofile = "image/logo.png"
   logoalt = "autoscaler.sh logo"
