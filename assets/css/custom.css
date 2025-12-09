@@ -1,0 +1,157 @@
+/* Base styles */
+html, body {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  height: 100%;
+}
+
+/* Content area */
+.content {
+  padding: 2rem;
+  max-width: none;
+  min-height: 100vh;
+}
+
+/* Markdown body */
+.markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  color: #333;
+  background-color: #fff;
+  padding: 2rem;
+  max-width: 100%; /* Changed from 70% to 100% */
+}
+
+/* Post styles */
+.post, .about-page, .term-list, .taxonomy-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.post-content {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.post-title {
+  font-size: 2.5em;
+  margin-bottom: 0.5rem;
+  color: #24292e;
+}
+
+.post-date {
+  display: block;
+  margin-bottom: 1rem;
+  color: #6a737d;
+  font-size: 14px;
+}
+
+/* Page title */
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (min-width: 48em) {
+  .content {
+    margin-left: 20rem;
+    margin-right: 2rem;
+  }
+  
+  .post, .about-page, .term-list, .taxonomy-list {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .content {
+    margin-left: 22rem;
+    margin-right: 4rem;
+  }
+  
+  .post, .about-page, .term-list, .taxonomy-list {
+    padding: 2rem 4rem;
+  }
+  
+  .post-content {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 80em) {
+  .post-content {
+    max-width: 900px;
+  }
+}
+
+/* Sidebar styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 2rem;
+  position: fixed;
+  width: 20rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Mobile sidebar and hamburger menu */
+@media (max-width: 48em) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
+    background-color: #202020;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar.open {
+    transform: translateY(0);
+  }
+
+  .content {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 4rem;
+  }
+
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+  }
+}
+
+/* Hide hamburger menu on larger screens */
+@media (min-width: 48em) {
+  .hamburger-menu {
+    display: none;
+  }
+}
+
+/* Other existing styles... */

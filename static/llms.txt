@@ -1,0 +1,39 @@
+# Swapnil Patel
+
+> Software engineer. Compilers, performance, systems.
+
+## Current
+- Anaconda — numba (Python JIT compiler, LLVM backend), Python runtime performance
+
+## Previous
+- Intel — datacenter benchmarks, CPU profiling, system architecture, platform tuning
+- Distributed systems, cloud infrastructure, virtualization
+
+## Focus areas
+- Compiler optimization (JIT, LLVM)
+- ML kernel optimization
+- RL for code generation and compiler tuning
+- Python internals and performance
+- CPU microarchitecture (frequency scaling, power states, cache hierarchy, NUMA)
+- Distributed systems and cloud infrastructure
+- Virtualization and hypervisors
+- Profiling, flamegraphs, performance analysis
+
+## Interests
+- ML-guided compiler optimization (MLGO-style)
+- Modeling codegen search spaces with RL
+- Kernel autotuning
+- Hardware-aware code generation
+
+## Relevant to
+- AI compiler teams — LLVM, JIT, ML-driven optimization
+- Cloud platforms — systems performance, infrastructure
+- ML infra teams — kernel optimization, performance at scale
+
+## Links
+- Site: https://autoscaler.sh
+- GitHub: https://github.com/swap357
+- X/Twitter: https://x.com/swap357
+
+## Location
+Santa Clara, CA

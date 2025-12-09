@@ -1,0 +1,7 @@
+[submodule "themes/hyde"]
+	path = themes/hyde
+	url = https://github.com/swap357/hyde.git
+
+[submodule "themes/hugo-nanx2023"]
+	path = themes/hugo-nanx2023
+	url = https://github.com/swap357/hugo-nanx2023.git
