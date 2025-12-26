@@ -1,0 +1,66 @@
+baseURL = "https://autoscaler.sh/"
+languageCode = "en-us"
+title = "autoscaler.sh"
+author = "Swapnil Patel"
+theme = "hugo-nanx2023"
+
+canonifyurls = true
+publishDir = "public"
+[pagination]
+  pagerSize = 5
+
+relativeURLs = true
+enableEmoji = true
+googleAnalytics = ""
+enableRobotsTXT = true
+hasCJKLanguage = false
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  pagetitle = "autoscaler.sh"
+  description = ""
+  copyright = "ⓒ 2025"
+  faviconfile = "image/favicon.png"
+  logofile = "image/logo.png"
+  logoalt = "autoscaler.sh"
+  mainSections = ["post"]
+  posts_navigation = true
+  uselatex = true
+  highlightjs = true
+  highlightjslanguages = ["python", "bash", "c", "go"]
+  progressively = false
+  externalLinksNewTab = true
+  github = "swap357"
+  twitter = "swap357"
+  linkedin = "swap357"
+
+[permalinks]
+  post = "/post/:year/:month/:title/"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[[menu.primary]]
+  identifier = "posts"
+  name = "posts"
+  url = "/"
+  weight = 1
+
+[[menu.primary]]
+  identifier = "about"
+  name = "about"
+  url = "/about/"
+  weight = 2
+
+[[menu.primary]]
+  identifier = "projects"
+  name = "projects"
+  url = "/projects/"
+  weight = 3
