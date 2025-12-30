@@ -2,7 +2,7 @@ baseURL = "https://autoscaler.sh/"
 languageCode = "en-us"
 title = "autoscaler.sh"
 author = "Swapnil Patel"
-theme = "hugo-nanx2023"
+theme = "phosphor"
 
 canonifyurls = true
 publishDir = "public"
@@ -25,7 +25,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
 [params]
   pagetitle = "autoscaler.sh"
   description = ""
-  copyright = "ⓒ 2025"
+  copyright = "ⓒ 2026"
   faviconfile = "image/favicon.png"
   logofile = "image/logo.png"
   logoalt = "autoscaler.sh"
