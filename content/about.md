@@ -1,10 +1,20 @@
 +++
-title = "about"
+title = ""
 author = "Swapnil Patel"
 +++
 
-compilers and Python performance at Anaconda. numba, JIT, figuring out why things are slow.
+# name
+Swapnil Patel
 
-before that — benchmarking, profiling, CPUs, datacenter workloads.
+# synopsis
+```
+autoscaler.sh [--notes] [--experiments]
+```
 
-Santa Clara, CA.
+# description
+SDE at Anaconda, working on OSS tooling.
+
+Notes on systems, performance, and where time actually goes.
+
+# see also
+perf(1), top(1), vmstat(8)
