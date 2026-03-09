@@ -1,0 +1,20 @@
+{
+  "title": "projects",
+  "updated": "2026-02-27",
+  "projects": [
+    {
+      "id": "numba",
+      "title": "numba",
+      "status": "active",
+      "stack": ["python", "llvm", "jit"],
+      "repo": "https://github.com/numba/numba"
+    },
+    {
+      "id": "llvmlite",
+      "title": "llvmlite",
+      "status": "active",
+      "stack": ["python", "llvm"],
+      "repo": "https://github.com/numba/llvmlite"
+    }
+  ]
+}

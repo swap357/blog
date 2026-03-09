@@ -1,1 +1,8 @@
 public/
+CLAUDE.md
+.mcp.json
+codex/
+.DS_Store
+edit/
+docs/
+.playwright-mcp/

@@ -1,0 +1,24 @@
+# llms.txt
+# Machine-oriented summary for LLM and automated agents.
+
+Site: autoscaler.sh
+URL: https://autoscaler.sh/
+Owner: Swapnil Patel
+Description: Swapnil Patel's site.
+Primary sections: /about/, /projects/, /writing/ (posts index)
+
+Key endpoints:
+- Site index: /index.json
+- About JSON: /about/index.json
+- Projects catalog JSON: /projects/index.json
+- Agent manifest: /.well-known/agent-manifest.json
+- Site graph: /site-map.json
+
+Navigation:
+- / (landing)
+- /about/
+- /projects/
+- /writing/
+
+Posts:
+

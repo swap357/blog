@@ -1,0 +1,24 @@
+{
+  "site": "autoscaler.sh",
+  "version": "2026.1",
+  "generated": "2026-03-08",
+  "entrypoints": {
+    "human": {
+      "/": "landing page",
+      "/about/": "about",
+      "/projects/": "projects",
+      "/writing/": "posts"
+    },
+    "machine": {
+      "llms": "/llms.txt",
+      "agent_manifest": "/.well-known/agent-manifest.json",
+      "site_map": "/site-map.json"
+    }
+  },
+  "capabilities": [
+    "static files only",
+    "JSON twin for every HTML page",
+    "schema.org JSON-LD"
+  ],
+  "updated": "2026-03-08"
+}

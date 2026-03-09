@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="numba, llvmlite — projects by Swapnil Patel." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>projects | autoscaler.sh</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>></text></svg>" />
+    <link rel="stylesheet" href="/shared/reset.css?v=3" />
+    <link rel="alternate" type="application/json" href="/projects/index.json" />
+    <style>
+      h1 {
+        font-family: var(--mono);
+        font-weight: 400;
+        font-size: 1.3rem;
+        margin: 1.5rem 0 0.3rem;
+        letter-spacing: -0.01em;
+      }
+
+      .subtitle {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        margin: 0 0 1.2rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .project-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .project {
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .project h2 {
+        margin: 0 0 0.25rem;
+        font-family: var(--mono);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .project h2 a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .project h2 a:hover {
+        color: var(--accent);
+      }
+
+      .project p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav data-nav-root aria-label="site navigation"></nav>
+      <h1>projects</h1>
+      <p class="subtitle">open source work</p>
+
+      <section>
+        <ul class="project-list" aria-label="project portfolio">
+          <li class="project">
+            <h2><a href="https://github.com/numba/numba">numba</a></h2>
+            <p>JIT compiler for Python. I work on this at Anaconda.</p>
+          </li>
+
+          <li class="project">
+            <h2><a href="https://github.com/numba/llvmlite">llvmlite</a></h2>
+            <p>Python bindings for LLVM. Powers numba's backend.</p>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="/shared/nav.js"></script>
+    <script>
+      window.mountPortalNav("[data-nav-root]", "/projects/");
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "projects",
+        "description": "Projects by Swapnil Patel.",
+        "url": "https://autoscaler.sh/projects/"
+      }
+    </script>
+  </body>
+</html>

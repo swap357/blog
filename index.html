@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>autoscaler.sh</title>
+    <meta name="description" content="Swapnil Patel — compilers, distributed systems, sci-fi, retro games." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>></text></svg>" />
+    <link rel="stylesheet" href="/shared/reset.css?v=3" />
+    <link rel="alternate" type="application/json" href="/index.json" />
+    <style>
+      html, body { min-height: 100%; }
+
+      /* --- scribble corner --- */
+      .notebook {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .scribble {
+        position: absolute;
+        right: 8%;
+        bottom: 14%;
+        font-family: "Manic", cursive;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--text);
+        opacity: 0.12;
+        white-space: pre;
+        margin: 0;
+        transition: opacity 1.2s ease;
+      }
+
+      .scribble.fading { opacity: 0; }
+
+      .sprite {
+        position: absolute;
+        opacity: 0.04;
+        animation: drift 110s ease-in-out infinite alternate-reverse;
+      }
+
+      .sprite rect { fill: var(--text); }
+
+      .invader { right: 8%; bottom: 8%; width: 28px; height: 20px; }
+
+      @keyframes drift {
+        from { transform: translateY(0); }
+        to   { transform: translateY(-12px); }
+      }
+
+      /* --- main content --- */
+      .overlay {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+      }
+
+      .content {
+        padding: 1.5rem 0 0 2.5rem;
+      }
+
+      .greeting {
+        margin: 0 0 0.3rem;
+        font-family: var(--mono);
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        font-weight: 400;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .cursor {
+        margin-left: 0.05em;
+        opacity: 0.3;
+        animation: blink 4s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 0.3; }
+        50%      { opacity: 0; }
+      }
+
+      .output {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+        color: var(--text);
+        line-height: 1.8;
+        margin: 0.6rem 0 0.3rem;
+      }
+
+      .output .muted { color: var(--muted); }
+
+      .output a {
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        transition: color 0.2s, border-color 0.2s;
+      }
+
+      .output a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .agent-nudge {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        margin: 0 0 1.2rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .agent-nudge a {
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        transition: color 0.2s, border-color 0.2s;
+      }
+
+      .agent-nudge a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* --- links --- */
+      .links-wrap {
+        min-height: calc(2.2em * 7);
+      }
+
+      .links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        line-height: 2.2;
+      }
+
+      .links a {
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+
+      .links a:hover {
+        border-color: var(--text);
+      }
+
+      .links .label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        margin-right: 0.4em;
+      }
+
+      .pager {
+        font-family: var(--mono);
+        font-size: 1rem;
+        margin: 1.2rem 0 2rem;
+        color: var(--muted);
+      }
+
+      .pager a, .pager span {
+        margin-right: 0.8em;
+        text-decoration: none;
+        color: var(--muted);
+      }
+
+      .pager a:hover {
+        color: var(--text);
+      }
+
+      .pager .current {
+        color: var(--text);
+      }
+
+      .pager .invisible {
+        visibility: hidden;
+      }
+
+      .links li.selected a {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="notebook">
+      <pre class="scribble" id="scribble"></pre>
+      <svg class="sprite invader" viewBox="0 0 11 8" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+        <rect x="2" y="0" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/>
+        <rect x="3" y="1" width="1" height="1"/><rect x="7" y="1" width="1" height="1"/>
+        <rect x="2" y="2" width="7" height="1"/>
+        <rect x="1" y="3" width="2" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="8" y="3" width="2" height="1"/>
+        <rect x="0" y="4" width="11" height="1"/>
+        <rect x="0" y="5" width="1" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="10" y="5" width="1" height="1"/>
+        <rect x="0" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
+        <rect x="3" y="7" width="2" height="1"/><rect x="6" y="7" width="2" height="1"/>
+      </svg>
+    </div>
+
+    <div class="overlay">
+      <main class="page-shell">
+        <nav data-nav-root aria-label="site navigation"></nav>
+        <div class="content">
+          <p class="greeting"><span id="typed"></span><span class="cursor">&#9608;</span></p>
+          <div class="output" id="output"></div>
+          <p class="agent-nudge" id="nudge">ai agents → <a href="/.well-known/agent-manifest.json">agent-manifest.json</a></p>
+          <div class="links-wrap">
+            <ul class="links" id="links"></ul>
+          </div>
+          <div class="pager" id="pager"></div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+    // capture shift+arrow before nav.js to use for pagination
+    document.addEventListener("keydown", function (e) {
+      if (e.shiftKey && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        document.dispatchEvent(new CustomEvent("paginate", { detail: e.key }));
+      }
+    }, true);
+    </script>
+    <script src="/shared/nav.js"></script>
+    <script>window.mountPortalNav("[data-nav-root]", "/");</script>
+
+    <script>
+    (function () {
+      var el = document.getElementById("typed");
+      var output = document.getElementById("output");
+
+      output.innerHTML = '<span class="muted">name:</span> swapnil patel' +
+        '<br><span class="muted">github:</span> <a href="https://github.com/swap357">swap357</a>';
+
+      var PER_PAGE = 7;
+      var pager = document.getElementById("pager");
+      var posts = [];
+      var currentPage = 1;
+      var totalPages = 1;
+
+      function initPosts(items) {
+        posts = items;
+        totalPages = Math.ceil(posts.length / PER_PAGE);
+        renderPage(1);
+        updateGhost();
+      }
+
+      // fetch posts from writing/index.json
+      fetch("/writing/index.json")
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          initPosts(data.posts.map(function (p) {
+            return { name: p.title, href: p.url };
+          }));
+        });
+
+      function renderPage(page) {
+        currentPage = page;
+        var start = (page - 1) * PER_PAGE;
+        var slice = posts.slice(start, start + PER_PAGE);
+        links.innerHTML = slice.map(function (item) {
+          return '<li><span class="label">posts/</span><a href="' + item.href + '">' + item.name + '</a></li>';
+        }).join("");
+
+        var p = '';
+        if (page > 1) p += '<a href="#" data-page="' + (page - 1) + '">\u2190</a>';
+        else p += '<span class="invisible">\u2190</span>';
+        for (var i = 1; i <= totalPages; i++) {
+          if (i === page) p += '<span class="current">' + i + '</span>';
+          else p += '<a href="#" data-page="' + i + '">' + i + '</a>';
+        }
+        if (page < totalPages) p += '<a href="#" data-page="' + (page + 1) + '">\u2192</a>';
+        else p += '<span class="invisible">\u2192</span>';
+        pager.innerHTML = p;
+      }
+
+      pager.addEventListener("click", function (e) {
+        if (e.target.dataset.page) {
+          e.preventDefault();
+          renderPage(parseInt(e.target.dataset.page));
+          highlightItem(0);
+        }
+      });
+
+      var selectedIdx = -1;
+      var ghost = document.getElementById("ghost");
+
+      function updateGhost() {
+        var lines = ["\u2191\u2193 browse"];
+        if (totalPages > 1) lines.push("\u21e7\u2190\u2192 page");
+        if (selectedIdx >= 0) lines.push("space open");
+        if (window._navHints) lines = lines.concat(window._navHints);
+        ghost.textContent = lines.join("\n");
+      }
+
+      function highlightItem(idx) {
+        var items = links.querySelectorAll("li");
+        if (!items.length) return;
+        items.forEach(function (li) { li.classList.remove("selected"); });
+        if (idx < 0) { selectedIdx = -1; updateGhost(); return; }
+        selectedIdx = Math.max(0, Math.min(idx, items.length - 1));
+        items[selectedIdx].classList.add("selected");
+        updateGhost();
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" && !e.shiftKey) {
+          e.preventDefault();
+          var items = links.querySelectorAll("li");
+          if (selectedIdx < items.length - 1) highlightItem(selectedIdx + 1);
+        } else if (e.key === "ArrowUp" && !e.shiftKey) {
+          e.preventDefault();
+          if (selectedIdx > 0) highlightItem(selectedIdx - 1);
+        } else if (e.key === "Escape" && selectedIdx >= 0) {
+          highlightItem(-1);
+        } else if ((e.key === "Enter" || e.key === " ") && selectedIdx >= 0) {
+          e.preventDefault();
+          var a = links.querySelectorAll("li")[selectedIdx].querySelector("a");
+          if (a) window.location.href = a.href;
+        }
+      });
+
+      document.addEventListener("paginate", function (e) {
+        if (e.detail === "ArrowRight" && currentPage < totalPages) {
+          renderPage(currentPage + 1); highlightItem(0);
+        } else if (e.detail === "ArrowLeft" && currentPage > 1) {
+          renderPage(currentPage - 1); highlightItem(0);
+        }
+      });
+
+      renderPage(1);
+
+      // --- title typing with typo ---
+      var steps = [];
+      var typo = "./autoscaler.hs";
+      var fix  = "sh";
+
+      for (var i = 0; i < typo.length; i++) steps.push({ t: typo[i], d: 14 + Math.random() * 10 });
+      steps.push({ t: null, d: 100 });
+      steps.push({ t: -1, d: 10 });
+      steps.push({ t: -1, d: 10 });
+      for (var j = 0; j < fix.length; j++) steps.push({ t: fix[j], d: 14 + Math.random() * 10 });
+
+      var text = "";
+      var idx = 0;
+
+      function tick() {
+        if (idx >= steps.length) return;
+        var s = steps[idx++];
+        if (s.t === null) { /* pause */ }
+        else if (s.t === -1) { text = text.slice(0, -1); }
+        else { text += s.t; }
+        el.textContent = text;
+        setTimeout(tick, s.d);
+      }
+
+      setTimeout(tick, 300);
+
+      // --- cycling scribble ---
+      var scribble = document.getElementById("scribble");
+      var blocks = [
+        "bayesian optimize:\n  fit GP, x_next \u2190 argmax EI(x)\n  surrogate cheaper than true f\n  explore vs exploit tradeoff",
+        "python \u2192 numba IR \u2192 LLVM IR \u2192 x86_64\n  @njit: type infer, lift loops\n  nopython: no boxing, no GIL\n  parallel: @prange, vectorize",
+        "pareto front:\n  p99 latency vs max throughput\n  min resources vs power efficiency\n  dominates(a,b): a[i]\u2264b[i] \u2200i"
+      ];
+      var bi = 0;
+
+      function typeBlock(str, cb) {
+        var ci = 0;
+        function t() {
+          if (ci >= str.length) { cb(); return; }
+          // type faster through newlines and spaces
+          var ch = str[ci++];
+          scribble.textContent = str.slice(0, ci);
+          var delay = ch === "\n" ? 30 : 40 + Math.random() * 30;
+          setTimeout(t, delay);
+        }
+        t();
+      }
+
+      function eraseBlock(cb) {
+        scribble.classList.add("fading");
+        setTimeout(function () {
+          scribble.textContent = "";
+          scribble.classList.remove("fading");
+          // tiny pause before next block appears
+          setTimeout(cb, 400);
+        }, 1200);
+      }
+
+      function cycle() {
+        typeBlock(blocks[bi], function () {
+          // hold the text for a while
+          setTimeout(function () {
+            eraseBlock(function () {
+              bi = (bi + 1) % blocks.length;
+              cycle();
+            });
+          }, 5000);
+        });
+      }
+
+      // start scribble after title finishes
+      setTimeout(cycle, 2800);
+    })();
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "autoscaler.sh",
+        "url": "https://autoscaler.sh/",
+        "description": "Swapnil Patel's site."
+      }
+    </script>
+  </body>
+</html>

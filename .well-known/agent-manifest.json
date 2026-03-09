@@ -1,0 +1,28 @@
+{
+  "schema_version": "2026-02-01",
+  "site": {
+    "name": "autoscaler.sh",
+    "owner": "Swapnil Patel",
+    "primary_language": "en",
+    "philosophy": "static files, no build step"
+  },
+  "interfaces": {
+    "human": ["/index.html", "/about/index.html", "/projects/index.html", "/writing/index.html"],
+    "machine": {
+      "pages": ["/index.json", "/about/index.json", "/projects/index.json", "/writing/index.json"],
+      "manifest_files": ["/llms.txt", "/site-map.json"]
+    }
+  },
+  "actions": [
+    {
+      "name": "list_pages",
+      "description": "Fetch the site graph.",
+      "url": "/site-map.json"
+    },
+    {
+      "name": "read_about",
+      "description": "About page as JSON.",
+      "url": "/about/index.json"
+    }
+  ]
+}

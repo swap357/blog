@@ -1,0 +1,26 @@
+{
+  "identity": {
+    "name": "Swapnil Patel",
+    "role": "Software engineer",
+    "employer": "Anaconda",
+    "focus": [
+      "compilers",
+      "LLVM",
+      "distributed systems",
+      "CPU micro-arch",
+      "Python performance"
+    ]
+  },
+  "facts": [
+    "works on numba and llvmlite at Anaconda",
+    "previously datacenter and distributed systems",
+    "into sci-fi, retro games, football"
+  ],
+  "links": {
+    "github": "https://github.com/swap357",
+    "twitter": "#",
+    "linkedin": "#",
+    "site": "https://autoscaler.sh"
+  },
+  "updated": "2026-02-27"
+}

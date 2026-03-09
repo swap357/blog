@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Page not found — autoscaler.sh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SIGSEGV | autoscaler.sh</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>></text></svg>" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+      :root {
+        --bg: #fff;
+        --surface: #fafaf8;
+        --text: #2a2a2a;
+        --muted: #888;
+        --accent: #b84532;
+        --line: #e4e4e4;
+        --mono: "IBM Plex Mono", "Menlo", monospace;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 13px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* scanlines — barely there */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.015) 2px,
+          rgba(0, 0, 0, 0.015) 4px
+        );
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .dump {
+        max-width: 540px;
+        width: 100%;
+        padding: 2rem;
+      }
+
+      .sig {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin: 0 0 0.25rem;
+      }
+
+      .fault {
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--text);
+        margin: 0 0 1.5rem;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 0 0 1.5rem;
+      }
+
+      .registers {
+        margin: 0 0 1.5rem;
+        padding: 0;
+        list-style: none;
+      }
+
+      .registers li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.2rem 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .registers li:last-child {
+        border-bottom: none;
+      }
+
+      .reg-name {
+        color: var(--text);
+        min-width: 4ch;
+      }
+
+      .trace {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 0 0 0.3rem;
+        line-height: 1.8;
+      }
+
+      .trace .frame {
+        color: var(--text);
+      }
+
+      .coredump {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 1.5rem 0 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .return {
+        display: inline-block;
+        font-size: 12px;
+        color: var(--accent);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        padding: 0.4rem 0;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+
+      .return:hover {
+        border-bottom-color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dump">
+      <p class="sig">SIGSEGV (11)</p>
+      <p class="fault">segmentation fault at 0x0000000000000404</p>
+
+      <hr />
+
+      <ul class="registers">
+        <li><span class="reg-name">rip</span> 0x00007ff8a2c1e404</li>
+        <li><span class="reg-name">rsp</span> 0x00007ffd3b2a08e0</li>
+        <li><span class="reg-name">rbp</span> 0x00007ffd3b2a0910</li>
+        <li><span class="reg-name">rax</span> 0x0000000000000000</li>
+        <li><span class="reg-name">rcx</span> 0xffffffffffffffff</li>
+        <li><span class="reg-name">rdi</span> 0x00007ff8a2d04a80</li>
+      </ul>
+
+      <p class="trace">#0&ensp; <span class="frame">resolve_route</span> +0x44 at router.c:404</p>
+      <p class="trace">#1&ensp; <span class="frame">handle_request</span> +0x1b at server.c:217</p>
+      <p class="trace">#2&ensp; <span class="frame">event_loop</span> +0xa3 at main.c:89</p>
+      <p class="trace">#3&ensp; <span class="frame">_start</span> +0x29</p>
+
+      <p class="coredump">core dumped to /dev/null</p>
+
+      <a class="return" href="/">return to known address space →</a>
+    </div>
+  </body>
+</html>

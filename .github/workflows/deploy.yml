@@ -1,0 +1,58 @@
+name: Deploy static site to Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate derived files
+        run: |
+          sudo apt-get install -q -y jq > /dev/null
+          ./make.sh
+
+      - name: Stage static export
+        run: |
+          mkdir -p ./publish
+          cp -R \
+            index.html \
+            index.json \
+            about \
+            projects \
+            writing \
+            shared \
+            .well-known \
+            .nojekyll \
+            llms.txt \
+            robots.txt \
+            site-map.json \
+            404.html \
+            CNAME \
+            publish/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
+
+      - name: Publish static files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./publish
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

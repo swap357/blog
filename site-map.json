@@ -1,0 +1,45 @@
+{
+  "nodes": [
+    {
+      "id": "site",
+      "label": "autoscaler.sh",
+      "href": "/",
+      "type": "WebSite"
+    },
+    {
+      "id": "about",
+      "label": "about",
+      "href": "/about/",
+      "type": "Person"
+    },
+    {
+      "id": "projects",
+      "label": "projects",
+      "href": "/projects/",
+      "type": "CollectionPage"
+    },
+    {
+      "id": "writing",
+      "label": "posts",
+      "href": "/writing/",
+      "type": "Blog"
+    }
+  ],
+  "edges": [
+    {
+      "from": "site",
+      "to": "about",
+      "relation": "describes"
+    },
+    {
+      "from": "site",
+      "to": "projects",
+      "relation": "contains"
+    },
+    {
+      "from": "site",
+      "to": "writing",
+      "relation": "contains"
+    }
+  ]
+}
