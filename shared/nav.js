@@ -26,22 +26,6 @@
       if (sections[i].href === current) { idx = i; break; }
     }
 
-    // build ghost hint lines for arrow navigation
-    var navHints = [];
-    if (idx > 0) navHints.push("\u2190 " + sections[idx - 1].label);
-    else if (idx === -1 && current !== "/") navHints.push("\u2190 home");
-    if (idx >= 0 && idx < sections.length - 1) navHints.push("\u2192 " + sections[idx + 1].label);
-
-    // create ghost hint element
-    var ghost = document.createElement("div");
-    ghost.className = "ghost-hint";
-    ghost.id = "ghost";
-    ghost.textContent = navHints.join("\n");
-    document.body.appendChild(ghost);
-
-    // expose nav hints for pages that extend the ghost
-    window._navHints = navHints;
-
     document.addEventListener("keydown", function (e) {
       var tag = (document.activeElement || {}).tagName;
       if (tag === "INPUT" || tag === "TEXTAREA") return;

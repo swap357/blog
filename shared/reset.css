@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
-@font-face {
-  font-family: "Manic";
-  src: url("/shared/fonts/MANIC-Alternates1-Regular.woff2") format("woff2");
-  font-display: swap;
-}
-
 :root {
   --bg: #fff;
   --surface: #fafaf8;
@@ -81,7 +75,6 @@ var {
   color: var(--muted);
   padding: 0.35rem 0.55rem;
   text-decoration: none;
-  transition: color 0.2s;
 }
 
 .portal-nav a:hover {
@@ -94,15 +87,3 @@ var {
   border-bottom: 2px solid var(--text);
 }
 
-.ghost-hint {
-  position: fixed;
-  bottom: 6%;
-  left: 8%;
-  font-family: "Manic", cursive;
-  font-size: 2rem;
-  line-height: 1.7;
-  color: var(--text);
-  opacity: 0.13;
-  white-space: pre;
-  pointer-events: none;
-}
