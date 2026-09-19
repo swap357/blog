@@ -1,0 +1,7 @@
+<footer class="site-footer">
+  <p>{{ site.Params.author | default site.Title }}</p>
+  <div class="footer-links">
+    {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a>{{ end }}
+    {{ with site.Params.github }}<a href="{{ . }}">GitHub</a>{{ end }}
+  </div>
+</footer>

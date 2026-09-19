@@ -1,0 +1,15 @@
+{{ define "main" }}
+<header class="projects-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p>{{ . }}</p>{{ end }}
+</header>
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+<ul class="project-list">
+  {{ range .Params.projects }}
+  <li class="project-item">
+    <h2 class="project-title">{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ if .url }} <span aria-hidden="true">↗</span></a>{{ end }}</h2>
+    <p>{{ .description }}</p>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}

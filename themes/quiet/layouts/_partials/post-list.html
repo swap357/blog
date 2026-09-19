@@ -1,0 +1,12 @@
+<ol class="post-list">
+  {{ range . }}
+  <li class="post-row">
+    {{ if not .Date.IsZero }}<time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>{{ end }}
+    <div class="post-summary">
+      <h3 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      {{ with .Description }}<p class="post-description">{{ . }}</p>{{ end }}
+      {{ with .Params.topic }}<span class="post-topic">{{ . }}</span>{{ end }}
+    </div>
+  </li>
+  {{ end }}
+</ol>

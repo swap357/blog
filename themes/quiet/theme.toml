@@ -1,0 +1,6 @@
+name = 'Quiet'
+description = 'A small, text-first theme for considered technical writing.'
+min_version = '0.158.0'
+
+[author]
+name = 'autoscaler.sh'

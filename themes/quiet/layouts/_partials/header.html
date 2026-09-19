@@ -1,0 +1,9 @@
+<header class="site-header">
+  <a class="site-name" href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ site.Title }}</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="{{ "writing/" | relURL }}"{{ if eq .Section "writing" }} aria-current="{{ if .IsSection }}page{{ else }}true{{ end }}"{{ end }}>Writing</a>
+    <a href="{{ "projects/" | relURL }}"{{ if eq .RelPermalink ("projects/" | relURL) }} aria-current="page"{{ end }}>Projects</a>
+    <a href="{{ "about/" | relURL }}"{{ if eq .RelPermalink ("about/" | relURL) }} aria-current="page"{{ end }}>About</a>
+    {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a>{{ end }}
+  </nav>
+</header>

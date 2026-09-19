@@ -1,0 +1,22 @@
+{{ define "main" }}
+<header class="archive-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="archive-intro">{{ . }}</p>{{ end }}
+</header>
+{{ with .Content }}<div class="archive-intro prose">{{ . }}</div>{{ end }}
+<div class="archive-years">
+  {{ range .RegularPages.GroupByDate "2006" }}
+  <section class="archive-year" aria-labelledby="year-{{ .Key }}">
+    <h2 id="year-{{ .Key }}" class="archive-year-label">{{ .Key }}</h2>
+    <ol class="archive-list">
+      {{ range .Pages }}
+      <li class="archive-entry">
+        <time class="archive-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan" }}</time>
+        <h3 class="archive-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      </li>
+      {{ end }}
+    </ol>
+  </section>
+  {{ end }}
+</div>
+{{ end }}

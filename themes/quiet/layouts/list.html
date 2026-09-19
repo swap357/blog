@@ -1,0 +1,14 @@
+{{ define "main" }}
+<header class="article-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="article-dek">{{ . }}</p>{{ end }}
+</header>
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+<section class="writing-section" aria-labelledby="archive-title">
+  <div class="section-heading">
+    <h2 id="archive-title">All articles</h2>
+    <span>{{ len .RegularPages }} entries</span>
+  </div>
+  {{ partial "post-list.html" .RegularPages.ByDate.Reverse }}
+</section>
+{{ end }}
