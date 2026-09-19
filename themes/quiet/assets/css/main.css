@@ -113,6 +113,14 @@ h2:hover .heading-anchor, h3:hover .heading-anchor, .heading-anchor:focus-visibl
 .article-pagination a:hover { text-decoration: underline; }
 .article-pagination span { display: block; color: var(--muted); font-size: .75rem; margin-bottom: .3rem; }
 .article-older { grid-column: 2; text-align: right; }
+.article-comments { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.useful-feedback:not([hidden]) { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; font-size: .8rem; color: var(--muted); }
+.useful-feedback button { display: inline-flex; align-items: center; padding: .4rem .8rem; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--moss); font: inherit; cursor: pointer; }
+.useful-feedback button:hover, .useful-feedback button[aria-pressed="true"] { background: var(--wash); border-color: var(--moss); }
+.useful-feedback button:disabled { cursor: wait; opacity: .65; }
+.useful-feedback [data-useful-count] { margin-left: .35rem; font-variant-numeric: tabular-nums; }
+.article-comments h2 { font-size: 1rem; }
+.discussion-link { color: var(--muted); font-size: .8rem; }
 
 .profile-header { max-width: 34rem; margin-bottom: 3rem; }
 .profile-header h1 { margin-bottom: 1rem; }
@@ -169,7 +177,8 @@ h2:hover .heading-anchor, h3:hover .heading-anchor, .heading-anchor:focus-visibl
   :root { --paper: white; --ink: black; --muted: #444; --moss: black; }
   body { font-size: 11pt; }
   .site-shell { width: 100%; max-width: none; }
-  .site-nav, .skip-link, .site-footer, .example-note, .article-footer, .heading-anchor, .article-contents { display: none; }
+  .site-nav, .skip-link, .site-footer, .example-note, .article-footer, .heading-anchor, .article-contents, .article-comments { display: none; }
+  .useful-feedback:not([hidden]) { display: none; }
   .site-header { padding-top: 0; }
   .main-content { padding-block: 2rem 0; }
   .prose, .article-header { max-width: none; }

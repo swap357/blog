@@ -22,6 +22,7 @@
   {{ if .Params.placeholder }}<p class="example-note">Placeholder</p>{{ end }}
   <div class="prose">{{ .Content }}</div>
   {{ if eq .Section "writing" }}
+  {{ partial "useful.html" . }}
   <footer class="article-footer">
     {{ $writing := (where site.RegularPages "Section" "writing").ByDate.Reverse }}
     {{ $index := $writing.IndexOf . }}
@@ -41,6 +42,7 @@
     {{ end }}
     <a class="back-link" href="{{ "writing/" | relURL }}"><span aria-hidden="true">←</span> All writing</a>
   </footer>
+  {{ partial "comments.html" . }}
   {{ end }}
 </article>
 </div>

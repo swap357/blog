@@ -1,0 +1,25 @@
+{{ if ne .Params.comments false }}
+{{ with site.Params.giscus }}
+<section class="article-comments" aria-labelledby="discussion-title">
+  <h2 id="discussion-title">Discussion</h2>
+  <p class="discussion-link"><a href="https://github.com/{{ .repo }}/discussions">View discussions on GitHub</a></p>
+  <div class="giscus"></div>
+  {{ $theme := resources.Get "css/giscus.css" | minify | fingerprint }}
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ .repo }}"
+    data-repo-id="{{ .repoID }}"
+    data-category="{{ .category }}"
+    data-category-id="{{ .categoryID }}"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="0"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="{{ $theme.Permalink }}"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</section>
+{{ end }}
+{{ end }}

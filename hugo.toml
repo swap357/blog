@@ -12,6 +12,12 @@ disableKinds = ['taxonomy', 'term']
   headline = 'as i understand it'
   intro = '[Swapnil Patel](https://github.com/swap357)'
 
+[params.giscus]
+  repo = 'swap357/blog'
+  repoID = 'R_kgDOLKkbLA'
+  category = 'Announcements'
+  categoryID = 'DIC_kwDOLKkbLM4DF-W_'
+
 [outputs]
   home = ['HTML', 'RSS']
   section = ['HTML']

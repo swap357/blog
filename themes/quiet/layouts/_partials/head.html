@@ -7,6 +7,9 @@
 {{ end }}
 {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
+{{ if and (eq .Section "writing") .IsPage site.Params.giscus (ne .Params.comments false) }}
+<meta name="giscus:backlink" content="{{ .Permalink }}">
+{{ end }}
 {{ with site.Home.OutputFormats.Get "rss" }}
 <link rel="alternate" type="{{ .MediaType.Type }}" title="{{ site.Title }}" href="{{ .Permalink }}">
 {{ end }}

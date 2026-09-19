@@ -24,6 +24,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Set up Node for reaction tests
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Check reactions API
+        run: node --test reactions/worker.test.js
+
       - name: Install Hugo
         shell: bash
         run: |

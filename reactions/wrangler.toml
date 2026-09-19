@@ -1,0 +1,25 @@
+name = "autoscaler-reactions"
+main = "worker.js"
+compatibility_date = "2026-09-19"
+workers_dev = false
+routes = [{ pattern = "autoscaler.sh/api/useful*", zone_name = "autoscaler.sh" }]
+
+[vars]
+SITE_ORIGIN = "https://autoscaler.sh"
+ALLOWED_ORIGINS = "https://autoscaler.sh"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "autoscaler-reactions"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[[ratelimits]]
+name = "READ_LIMIT"
+namespace_id = "7492800441"
+simple = { limit = 120, period = 60 }
+
+[[ratelimits]]
+name = "WRITE_LIMIT"
+namespace_id = "7492800442"
+simple = { limit = 20, period = 60 }

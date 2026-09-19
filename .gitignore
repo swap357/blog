@@ -2,6 +2,10 @@ public/
 resources/
 .hugo_build.lock
 __pycache__/
+node_modules/
+.wrangler/
+.dev.vars*
+hugo.preview.toml
 CLAUDE.md
 .mcp.json
 codex/

@@ -1,6 +1,8 @@
 # Quiet
 
-A small Hugo theme with native fonts, warm neutrals, and no JavaScript.
+A small Hugo theme with native fonts and warm neutrals. Reading works without
+JavaScript; optional Giscus comments use one external script on articles, and
+anonymous Useful reactions use one small local script.
 Tested with Hugo **0.166.0**, standard edition.
 
 Templates live in `layouts/`; the stylesheet is `assets/css/main.css`.

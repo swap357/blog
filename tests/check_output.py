@@ -19,6 +19,8 @@ class Page(HTMLParser):
         self.refs = []
         self.canonicals = []
         self.stylesheets = []
+        self.scripts = []
+        self.reactions = []
         self.navigation = []
         self.title = []
         self.heading = []
@@ -32,6 +34,12 @@ class Page(HTMLParser):
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
         self.tags.append(tag)
+        if "data-useful" in attrs:
+            self.reactions.append(attrs)
+        if tag == "script":
+            self.scripts.append(attrs)
+            if attrs.get("data-theme"):
+                self.refs.append(attrs["data-theme"])
         if attrs.get("id"):
             self.ids.add(attrs["id"])
         for key in ("href", "src"):
@@ -124,7 +132,47 @@ def check_site(output, base_url):
             check(page.tags.count(tag) == 1, f"{name}: expected exactly one <{tag}>")
         check(bool(page.language), f"{name}: missing HTML language")
         check("width=device-width" in page.viewport, f"{name}: missing responsive viewport")
-        check("script" not in page.tags, f"{name}: unexpected script")
+        local_scripts = [script for script in page.scripts
+                         if script.get("src", "").startswith("/js/useful.")]
+        if page.reactions:
+            check(name.parts[0] == "writing" and name != Path("writing/index.html"),
+                  f"{name}: reactions belong only on articles")
+            check(len(page.reactions) == 1 and len(local_scripts) == 1,
+                  f"{name}: expected one Useful control and script")
+            check(page.reactions[0].get("data-article") == urlsplit(current_url).path,
+                  f"{name}: reaction identifier differs from article path")
+            check(bool(page.reactions[0].get("data-endpoint")), f"{name}: missing reaction endpoint")
+            check("hidden" in page.reactions[0], f"{name}: no-script reaction control is visible")
+            for script in local_scripts:
+                check("defer" in script and bool(script.get("integrity")),
+                      f"{name}: reaction script must be deferred and fingerprinted")
+        else:
+            check(not local_scripts, f"{name}: reaction script without a control")
+        other_scripts = [script for script in page.scripts if script not in local_scripts]
+        if "discussion-title" in page.ids:
+            check(name.parts[0] == "writing" and name != Path("writing/index.html"),
+                  f"{name}: comments belong only on articles")
+            check(len(other_scripts) == 1, f"{name}: expected one Giscus script")
+            check("https://github.com/swap357/blog/discussions" in page.refs,
+                  f"{name}: missing discussion fallback link")
+            for script in other_scripts:
+                expected = {
+                    "src": "https://giscus.app/client.js",
+                    "data-repo": "swap357/blog",
+                    "data-repo-id": "R_kgDOLKkbLA",
+                    "data-category": "Announcements",
+                    "data-category-id": "DIC_kwDOLKkbLM4DF-W_",
+                    "data-mapping": "pathname", "data-strict": "1",
+                    "data-reactions-enabled": "0", "data-loading": "lazy",
+                    "crossorigin": "anonymous",
+                }
+                check(all(script.get(key) == value for key, value in expected.items()),
+                      f"{name}: unexpected Giscus configuration")
+                check("async" in script, f"{name}: comments script blocks rendering")
+                check(script.get("data-theme", "").startswith(urljoin(base_url, "css/giscus.")),
+                      f"{name}: missing locally hosted comments theme")
+        else:
+            check(not other_scripts, f"{name}: unexpected script")
         check(page.canonicals == [current_url],
               f"{name}: expected canonical {current_url}, got {page.canonicals}")
         check(bool(page.stylesheets), f"{name}: missing stylesheet")

@@ -10,7 +10,9 @@ python3 tests/check_output.py public
 The Python checker uses only the standard library. It checks generated HTML identities,
 shared navigation, local links and fragments, canonical URLs, language and viewport
 metadata, stylesheet presence, RSS, and archive coverage. It also
-rejects scripts, external CSS resources, and downloaded fonts. Published articles must appear in both the archive and RSS. Sitemap URLs must
+allows only the configured Giscus and local Useful scripts on articles, checks lazy loading,
+stable mapping, local theme and fallback link, and rejects external CSS resources
+and downloaded fonts. Published articles must appear in both the archive and RSS. Sitemap URLs must
 match published pages, robots.txt must advertise the sitemap, and CNAME must match
 the configured hostname. Checks adapt as articles are added.
 
@@ -35,3 +37,13 @@ bottom scroll position. Contents and code-scroll counts are zero when those opti
 features are absent; present features must pass their interaction checks. These checks
 complement visual review; they do not judge
 the quality of prose, visual hierarchy, or assistive-technology behavior.
+
+After deployment, run `check_comments.js` through the same Playwright tool. It
+checks the real Giscus widget at desktop and mobile widths: GitHub sign-in,
+custom theme colors, lazy loading, fallback link, and horizontal overflow. It
+does not sign in or post test comments.
+
+For anonymous reactions, run `node --test reactions/worker.test.js` (Node 24+).
+`check_useful.js` exercises the local button against the local Worker and SQLite
+store, including two readers, reloads, undo and failed saves. Follow
+`reactions/README.md` to start the preview. It never submits production reactions.

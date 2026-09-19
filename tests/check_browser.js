@@ -184,7 +184,8 @@ async (sharedPage) => {
                 .map(anchor => anchor.getAttribute('href')),
               design: [html.backgroundColor, body.color, body.fontFamily],
               overflow: document.documentElement.scrollWidth - innerWidth,
-              scripts: document.scripts.length,
+              scripts: [...document.scripts].map(script => script.getAttribute('src')),
+              reactionVisible: !!document.querySelector('[data-useful]:not([hidden])'),
             };
           });
           expectedNavigation ??= JSON.stringify(state.navigation);
@@ -193,7 +194,9 @@ async (sharedPage) => {
           assert(JSON.stringify(state.navigation) === expectedNavigation, 'main navigation differs between pages');
           assert(JSON.stringify(state.design) === expectedDesign, 'palette or body type differs between pages');
           assert(state.overflow <= 1, `horizontal page overflow: ${state.overflow}px`);
-          assert(state.scripts === 0, 'page includes JavaScript');
+          assert(state.scripts.every(src => src === 'https://giscus.app/client.js' || /^\/js\/useful\.min\.[a-f0-9]+\.js$/.test(src)),
+            'page includes an unexpected script');
+          assert(!state.reactionVisible, 'reaction control requires JavaScript and should be hidden');
           const scrolling = await scrollPage();
           const article = await checkArticle(width);
           tocChecks += article.toc;
