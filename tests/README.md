@@ -12,7 +12,9 @@ shared navigation, local links and fragments, canonical URLs, language and viewp
 metadata, stylesheet presence, RSS, and archive coverage. It also
 allows only the configured Giscus and local Useful scripts on articles, checks lazy loading,
 stable mapping, local theme and fallback link, and rejects external CSS resources
-and downloaded fonts. Published articles must appear in both the archive and RSS. Sitemap URLs must
+and downloaded fonts. The FaaS article checks the timing totals and AWS specification
+units. Its charts render without JavaScript. Its qualitative response-time SVG must have a smooth curve, descriptive
+axes, and no numeric ticks. Published articles must appear in both the archive and RSS. Sitemap URLs must
 match published pages, robots.txt must advertise the sitemap, and CNAME must match
 the configured hostname. Checks adapt as articles are added.
 
@@ -25,6 +27,7 @@ The browser suite crawls internal pages and includes `404.html`. At 1440px, 390p
 320px, and 390px with text enlarged to 200%, it verifies:
 
 - Navigation and reading with JavaScript disabled.
+- A readable FaaS response-time SVG and startup breakdown without JavaScript.
 - Consistent computed colors and body font, with no page horizontal overflow.
 - Mouse-wheel access to the footer and return to the top.
 - Article contents links, heading positions, and browser back navigation, when present.

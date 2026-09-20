@@ -16,6 +16,9 @@ class Page(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.tags = []
         self.ids = set()
+        self.elements = {}
+        self.classes = set()
+        self.text = []
         self.refs = []
         self.canonicals = []
         self.stylesheets = []
@@ -34,6 +37,7 @@ class Page(HTMLParser):
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
         self.tags.append(tag)
+        self.classes.update(attrs.get("class", "").split())
         if "data-useful" in attrs:
             self.reactions.append(attrs)
         if tag == "script":
@@ -42,6 +46,7 @@ class Page(HTMLParser):
                 self.refs.append(attrs["data-theme"])
         if attrs.get("id"):
             self.ids.add(attrs["id"])
+            self.elements[attrs["id"]] = attrs
         for key in ("href", "src"):
             if attrs.get(key):
                 self.refs.append(attrs[key])
@@ -73,6 +78,7 @@ class Page(HTMLParser):
             self.in_heading = False
 
     def handle_data(self, text):
+        self.text.append(text)
         if self.in_title:
             self.title.append(text)
         if self.in_heading:
@@ -148,7 +154,41 @@ def check_site(output, base_url):
                       f"{name}: reaction script must be deferred and fingerprinted")
         else:
             check(not local_scripts, f"{name}: reaction script without a control")
-        other_scripts = [script for script in page.scripts if script not in local_scripts]
+        if name == Path("writing/fitting-functions-on-one-server/index.html"):
+            check({"response-chart", "openfaas-chart"}
+                  <= page.ids, f"{name}: missing chart markup")
+            graphic = page.elements.get("response-static", {})
+            check(graphic.get("src", "").endswith("/response-time.svg") and
+                  bool(graphic.get("alt")) and "hidden" not in graphic and
+                  "hidden" not in page.elements.get("response-chart", {}),
+                  f"{name}: expected visible, labeled response-time SVG")
+            check("response-hint" not in page.ids, f"{name}: static trend has interaction instructions")
+            try:
+                svg = ET.parse(path.parent / "response-time.svg")
+                labels = ["".join(node.itertext()).strip() for node in svg.findall(".//{*}text")]
+                check(any("response time" in label.lower() for label in labels) and
+                      any("functions" in label.lower() for label in labels),
+                      f"{name}: trend needs descriptive axis labels")
+                check(not any(re.fullmatch(r"[-+]?\d+(?:\.\d+)?(?:\s*(?:s|ms))?", label)
+                              for label in labels), f"{name}: qualitative trend has numeric ticks")
+                check(any(re.search(r"[Cc]", node.get("d", "")) for node in svg.findall(".//{*}path")),
+                      f"{name}: trend needs a smooth cubic curve")
+            except (OSError, ET.ParseError) as error:
+                failures.append(f"{name}: response-time SVG: {error}")
+            check(any(re.fullmatch(r"/css/faas\.min\.[a-f0-9]+\.css", sheet)
+                      for sheet in page.stylesheets), f"{name}: missing local chart stylesheet")
+            text = " ".join(" ".join(page.text).split())
+            check("m6i.metal 128 512 GiB EBS-only 50 Gbps 40 Gbps" in text,
+                  f"{name}: missing AWS specifications or bandwidth/memory units")
+            check(all(total in text for total in ("15.1 s", "27.5 s")),
+                  f"{name}: missing readable startup totals")
+            check("article" in page.tags and "reveal" not in page.classes,
+                  f"{name}: expected a normal blog article")
+            check("Approximate values reconstructed from the original chart" not in text and
+                  not any("response-time.png" in ref for ref in page.refs),
+                  f"{name}: original raster chart or removed caption is still present")
+        other_scripts = [script for script in page.scripts
+                         if script not in local_scripts]
         if "discussion-title" in page.ids:
             check(name.parts[0] == "writing" and name != Path("writing/index.html"),
                   f"{name}: comments belong only on articles")

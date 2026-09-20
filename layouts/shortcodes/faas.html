@@ -1,0 +1,26 @@
+<div class="faas-visual">
+{{ if eq (.Get 0) "layers" }}
+<figure class="lifecycle" aria-label="Cold-start path: pod creation contains Docker creation, followed by server startup, context loading, and execution.">
+          <div class="pod-stage"><span>Kubernetes pod creation</span><div class="docker-stage">Docker creation</div><strong>7 s / 11 s</strong></div>
+          <div class="life-stage server"><span>Server startup</span><strong>5 s / 12 s</strong></div>
+          <div class="life-stage context"><span>Context loading</span><strong>2.7 s / 4.1 s</strong></div>
+          <div class="life-stage execution"><span>Execution</span><strong>0.4 s</strong></div>
+        </figure>
+<p class="faas-caption">Cold-start path · first / 468th function. Boxes show stage boundaries, not a time scale.</p>
+{{ else if eq (.Get 0) "openfaas" }}
+        <figure class="breakdown" id="openfaas-chart" aria-label="OpenFaaS cold-start breakdown through the first response, in seconds">
+          <div class="bar-row"><div class="bar-label">First function</div><div class="bar-track"><span class="segment pod" style="width:23.3333%" title="Pod and Docker creation: 7 seconds"></span><span class="segment server" style="width:16.6667%" title="Server startup: 5 seconds"></span><span class="segment context" style="width:9%" title="Context loading: 2.7 seconds"></span><span class="segment execution" style="width:1.3333%" title="Execution: 0.4 seconds"></span></div><strong class="bar-total">15.1 s</strong></div>
+          <div class="bar-row"><div class="bar-label">468th function</div><div class="bar-track"><span class="segment pod" style="width:36.6667%" title="Pod and Docker creation: 11 seconds"></span><span class="segment server" style="width:40%" title="Server startup: 12 seconds"></span><span class="segment context" style="width:13.6667%" title="Context loading: 4.1 seconds"></span><span class="segment execution" style="width:1.3333%" title="Execution: 0.4 seconds"></span></div><strong class="bar-total">27.5 s</strong></div>
+          <div class="bar-axis"><span>0</span><span>10</span><span>20</span><span>30 seconds</span></div>
+          <figcaption class="legend"><span><i class="pod"></i>Pod + Docker</span><span><i class="server"></i>Server</span><span><i class="context"></i>Context</span><span><i class="execution"></i>Execution</span></figcaption>
+        </figure>
+        <div class="table-scroll"><table id="openfaas-table"><caption>Cold start through first response · seconds</caption><thead><tr><th scope="col">Function</th><th scope="col">Pod + Docker</th><th scope="col">Server</th><th scope="col">Context</th><th scope="col">Execution</th><th scope="col">Total</th></tr></thead><tbody><tr><th scope="row">First</th><td>7</td><td>5</td><td>2.7</td><td>0.4</td><td>15.1</td></tr><tr><th scope="row">468th</th><td>11</td><td>12</td><td>4.1</td><td>0.4</td><td>27.5</td></tr></tbody></table></div>
+{{ else if eq (.Get 0) "response" }}
+<figure class="response-figure" id="response-chart" aria-describedby="response-caption">
+  <img id="response-static" src="{{ (.Page.Resources.Get "response-time.svg").RelPermalink }}" width="672" height="360" alt="A lightly smoothed curve shows p99 response time rising with function density, with small early fluctuations and larger spikes as the server fills.">
+  <figcaption id="response-caption">p99 rises as more functions share the server.</figcaption>
+</figure>
+{{ else }}
+{{ errorf "Unknown FaaS chart: %s" (.Get 0) }}
+{{ end }}
+</div>

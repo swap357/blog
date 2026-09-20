@@ -184,7 +184,10 @@ async (sharedPage) => {
                 .map(anchor => anchor.getAttribute('href')),
               design: [html.backgroundColor, body.color, body.fontFamily],
               overflow: document.documentElement.scrollWidth - innerWidth,
-              scripts: [...document.scripts].map(script => script.getAttribute('src')),
+              scripts: [...document.scripts].map(script => ({
+                src: script.getAttribute('src'), defer: script.defer, integrity: script.integrity,
+              })),
+              faas: location.pathname === '/writing/fitting-functions-on-one-server/',
               reactionVisible: !!document.querySelector('[data-useful]:not([hidden])'),
             };
           });
@@ -194,8 +197,17 @@ async (sharedPage) => {
           assert(JSON.stringify(state.navigation) === expectedNavigation, 'main navigation differs between pages');
           assert(JSON.stringify(state.design) === expectedDesign, 'palette or body type differs between pages');
           assert(state.overflow <= 1, `horizontal page overflow: ${state.overflow}px`);
-          assert(state.scripts.every(src => src === 'https://giscus.app/client.js' || /^\/js\/useful\.min\.[a-f0-9]+\.js$/.test(src)),
+          assert(state.scripts.every(script => script.src === 'https://giscus.app/client.js' || /^\/js\/useful\.min\.[a-f0-9]+\.js$/.test(script.src)),
             'page includes an unexpected script');
+          if (state.faas) {
+            assert(await page.locator('#openfaas-chart, #response-chart').count() === 2,
+              'chart markup is missing');
+            assert(await page.locator('#response-static').isVisible(), 'response-time graphic is not visible without JavaScript');
+            assert(await page.locator('#response-static').evaluate(image => image.complete && image.naturalWidth > 0 && image.src.endsWith('/response-time.svg')),
+              'response-time SVG did not load');
+            assert(await page.locator('.faas-visual select, #response-hint, .reveal').count() === 0,
+              'article exposes unusable chart controls or presentation markup without JavaScript');
+          }
           assert(!state.reactionVisible, 'reaction control requires JavaScript and should be hidden');
           const scrolling = await scrollPage();
           const article = await checkArticle(width);

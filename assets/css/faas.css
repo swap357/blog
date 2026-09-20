@@ -1,0 +1,38 @@
+.faas-visual {
+  --pod: #718573;
+  --server: #a9b7a1;
+  --context: #bb8d73;
+  --execution: #354b43;
+  font-variant-numeric: tabular-nums;
+}
+.faas-visual figure { margin: 1.5rem 0; }
+.faas-visual .faas-caption { color: var(--muted); font-size: .8rem; }
+.faas-visual .lifecycle { display: grid; grid-template-columns: 1.5fr 1fr 1fr .8fr; gap: .5rem; font-size: .8rem; line-height: 1.5; }
+.faas-visual .pod-stage { display: flex; flex-direction: column; gap: .5rem; border: 2px solid var(--pod); padding: .75rem; }
+.faas-visual .docker-stage { border: 1px solid var(--pod); padding: .5rem; }
+.faas-visual .pod-stage strong { text-align: right; }
+.faas-visual .life-stage { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: .75rem; }
+.faas-visual .life-stage.execution { color: var(--paper); }
+.faas-visual .pod { background: var(--pod); }
+.faas-visual .server { background: var(--server); }
+.faas-visual .context { background: var(--context); }
+.faas-visual .execution { background: var(--execution); }
+.faas-visual .bar-row { display: grid; grid-template-columns: 8rem 1fr 4.5rem; align-items: center; gap: .6rem; margin-top: 1rem; }
+.faas-visual .bar-label { font-size: .8rem; line-height: 1.4; }
+.faas-visual .bar-track { display: flex; height: 34px; background: var(--wash); }
+.faas-visual .segment { height: 100%; border-right: 2px solid var(--paper); }
+.faas-visual .bar-total { font-size: 1rem; }
+.faas-visual .bar-axis { display: flex; justify-content: space-between; margin: .5rem 5.1rem 0 8.6rem; color: var(--muted); font-size: .65rem; }
+.faas-visual .legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .75rem; }
+.faas-visual .legend span { display: inline-flex; gap: .35rem; align-items: center; }
+.faas-visual .legend i { width: .6rem; height: .6rem; }
+.faas-visual .table-scroll { overflow-x: auto; margin-top: 1.5rem; }
+.faas-visual table { display: table; width: 100%; min-width: 440px; font-size: .75rem; }
+.faas-visual caption { text-align: left; color: var(--muted); padding-bottom: .3rem; }
+.faas-visual #response-static { display: block; width: 100%; }
+@media (max-width: 600px) {
+  .faas-visual .lifecycle { grid-template-columns: 1fr 1fr; }
+  .faas-visual .bar-row { grid-template-columns: 1fr 4.5rem; gap: .4rem; }
+  .faas-visual .bar-label { grid-column: 1 / -1; }
+  .faas-visual .bar-axis { margin-left: 0; margin-right: 4.9rem; }
+}
